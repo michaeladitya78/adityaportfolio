@@ -1,0 +1,67 @@
+
+@layer base {
+  :root {
+    /* Base color palette */
+    --background: 0 0% 4%;  /* #0A0A0A */
+    --foreground: 0 0% 100%; /* #FFFFFF */
+    --card: 0 0% 4%;        /* #0A0A0A */
+    --card-foreground: 0 0% 100%; /* #FFFFFF */
+    --popover: 0 0% 4%;     /* #0A0A0A */
+    --popover-foreground: 0 0% 100%; /* #FFFFFF */
+    --primary: 210 100% 50%; /* #0077FF */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --secondary: 160 78% 47%; /* #20C997 */
+    --secondary-foreground: 0 0% 4%; /* #0A0A0A */
+    --muted: 0 0% 9%;       /* #171717 */
+    --muted-foreground: 0 0% 94%; /* #F0F0F0 */
+    --accent: 43 60% 52%;   /* #D4AF37 */
+    --accent-foreground: 0 0% 4%; /* #0A0A0A */
+    --destructive: 0 84.2% 60.2%; /* Kept the same */
+    --destructive-foreground: 0 0% 98%; /* Kept the same */
+    --border: 0 0% 12%;     /* #1F1F1F */
+    --input: 0 0% 12%;      /* #1F1F1F */
+    --ring: 210 100% 50%;  /* #0077FF */
+    --radius: 0.5rem;
+    
+    /* Custom colors */
+    --cursor-dark: hsl(0, 0%, 4%);       /* #0A0A0A */
+    --cursor-darker: hsl(0, 0%, 3%);     /* #080808 */
+    --cursor-light: hsl(0, 0%, 94%);     /* #F0F0F0 */
+    --cursor-gray: hsl(0, 0%, 9%);       /* #171717 */
+    --cursor-light-gray: hsl(0, 0%, 70%); /* #B3B3B3 */
+    
+    /* Fonts */
+    --font-heading: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-body: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-code: 'SF Mono', ui-monospace, monospace;
+    
+    /* Responsive variables */
+    --section-spacing: 7rem;
+    --content-max-width: 85%;
+    --h1-size: 3rem;
+    --h2-size: 2.25rem;
+    --h3-size: 1.75rem;
+    --body-size: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-heading;
+  }
+  
+  p, div, span, button {
+    @apply font-body;
+  }
+  
+  code, pre {
+    @apply font-mono;
+  }
+  
+  /* SF Pro fonts were already defined in this file, we can remove them since we're now loading them from index.html */
+}
