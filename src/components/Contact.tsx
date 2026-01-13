@@ -18,14 +18,14 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
   });
-  
+
   const [isVisible, setIsVisible] = useState(false);
-  
+
   useEffect(() => {
     if (inView) {
       setIsVisible(true);
@@ -40,7 +40,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Email redirection logic - using mailto for frontend-only solution
     // In a real-world scenario, you'd use a service like EmailJS or a serverless function
     const { name, email, subject, message } = formData;
@@ -49,9 +49,9 @@ export default function Contact() {
     )}&body=${encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\n\n${message}`
     )}`;
-    
+
     window.open(mailtoLink, "_blank");
-    
+
     // Simulate completion
     setTimeout(() => {
       toast({
@@ -74,22 +74,42 @@ export default function Contact() {
       <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-10"></div>
       <div className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/5 rounded-full filter blur-3xl"></div>
       <div className="absolute bottom-1/3 -right-32 w-64 h-64 bg-tech-600/5 rounded-full filter blur-3xl"></div>
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeading 
-          title="Get in Touch" 
-          subtitle="Have a question or want to work together? Feel free to reach out!"
+        <SectionHeading
+          title="🤝 Let's Connect"
+          subtitle="I'm actively seeking opportunities where I can leverage my unique combination of product management, software engineering, and AI/ML skills to build impactful products. Whether you're looking for a Product Manager who can code, a Software Engineer who understands business, or an AI Developer who can strategize, let's discuss how I can contribute to your team's success."
         />
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-          <div 
-            className={`lg:col-span-2 space-y-8 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-            }`}
+          <div
+            className={`lg:col-span-2 space-y-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+              }`}
           >
             <div className="glass-card p-6 space-y-6">
-              <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
-              
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Let's Connect</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  I'm actively seeking opportunities where I can leverage my unique combination of product management,
+                  software engineering, and AI/ML skills to build impactful products. Whether you're looking for a Product Manager
+                  who can code, a Software Engineer who understands business, or an AI Developer who can strategize,
+                  let's discuss how I can contribute to your team's success.
+                </p>
+              </div>
+
+              <div className="space-y-4 pt-2">
+                <h4 className="font-medium text-sm text-foreground">Available for:</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex gap-2 items-start"><span className="text-accent">•</span> Product Management roles (Junior to Mid-level)</li>
+                  <li className="flex gap-2 items-start"><span className="text-accent">•</span> Software Engineering positions (Full-stack, Backend, AI/ML)</li>
+                  <li className="flex gap-2 items-start"><span className="text-accent">•</span> Freelance projects (AI Chatbots, Web Development, Product Consulting)</li>
+                  <li className="flex gap-2 items-start"><span className="text-accent">•</span> Contract work and consulting engagements</li>
+                  <li className="flex gap-2 items-start"><span className="text-accent">•</span> Collaborative open-source projects</li>
+                </ul>
+              </div>
+
+              <h3 className="text-xl font-semibold mb-4 pt-4">Contact Information</h3>
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="h-10 w-10 rounded-full bg-dark-800 border border-dark-700 flex-shrink-0 flex items-center justify-center">
@@ -102,7 +122,7 @@ export default function Contact() {
                     </a>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-4">
                   <div className="h-10 w-10 rounded-full bg-dark-800 border border-dark-700 flex-shrink-0 flex items-center justify-center">
                     <Phone className="text-accent h-5 w-5" />
@@ -116,29 +136,29 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-            
+
             <div className="glass-card p-6">
               <h4 className="font-medium mb-4">Connect with me</h4>
               <div className="flex space-x-4">
-                <a 
-                  href="https://www.linkedin.com/in/aditya-raj-8764a3205/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/aditya-raj-8764a3205/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-dark-800 border border-dark-700 flex items-center justify-center hover:bg-dark-700 hover:text-accent transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
-                <a 
-                  href="https://github.com/mitcheladitya" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/mitcheladitya"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-dark-800 border border-dark-700 flex items-center justify-center hover:bg-dark-700 hover:text-accent transition-colors"
                   aria-label="GitHub"
                 >
                   <Github className="h-5 w-5" />
                 </a>
-                <a 
+                <a
                   href="mailto:adityar.dd22.ma@nitp.ac.in"
                   className="w-10 h-10 rounded-full bg-dark-800 border border-dark-700 flex items-center justify-center hover:bg-dark-700 hover:text-accent transition-colors"
                   aria-label="Email"
@@ -148,15 +168,14 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          
-          <div 
-            className={`lg:col-span-3 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-            }`}
+
+          <div
+            className={`lg:col-span-3 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              }`}
           >
             <div className="glass-card p-6 md:p-8">
               <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
@@ -174,7 +193,7 @@ export default function Contact() {
                       required
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm text-muted-foreground flex items-center gap-2">
                       <AtSign className="h-4 w-4 text-accent" />
@@ -192,7 +211,7 @@ export default function Contact() {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm text-muted-foreground flex items-center gap-2">
                     <MessageSquare className="h-4 w-4 text-accent" />
@@ -208,7 +227,7 @@ export default function Contact() {
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm text-muted-foreground flex items-center gap-2">
                     <MessageSquare className="h-4 w-4 text-accent" />
@@ -224,9 +243,9 @@ export default function Contact() {
                     required
                   />
                 </div>
-                
-                <Button 
-                  type="submit" 
+
+                <Button
+                  type="submit"
                   className="w-full sm:w-auto bg-accent hover:bg-accent-600 text-white"
                   disabled={isSubmitting}
                 >

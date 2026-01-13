@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -155,13 +156,13 @@ export default {
 					}
 				},
 				"blur-in": {
-					"0%": { 
+					"0%": {
 						filter: "blur(12px)",
-						opacity: "0" 
+						opacity: "0"
 					},
-					"100%": { 
+					"100%": {
 						filter: "blur(0px)",
-						opacity: "1" 
+						opacity: "1"
 					}
 				},
 				"glow-pulse": {
@@ -178,11 +179,11 @@ export default {
 					"75%": { transform: "translateY(10px) rotate(2deg)" }
 				},
 				"path-glow": {
-					"0%, 100%": { 
+					"0%, 100%": {
 						opacity: "0.7",
 						boxShadow: "0 0 5px 0 rgba(155, 135, 245, 0.7)"
 					},
-					"50%": { 
+					"50%": {
 						opacity: "1",
 						boxShadow: "0 0 20px 0 rgba(155, 135, 245, 1)"
 					}
@@ -242,5 +243,5 @@ export default {
 			},
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;

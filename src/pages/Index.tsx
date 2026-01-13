@@ -20,15 +20,15 @@ const Index = () => {
   useEffect(() => {
     if (isMounted.current) return;
     isMounted.current = true;
-    
+
     const handleMouseMove = (e: MouseEvent) => {
       setCursorPosition({ x: e.clientX, y: e.clientY });
-      
+
       // Update global cursor
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       }
-      
+
       // Update all glow effects
       const glowEffects = document.querySelectorAll('.glow-effect');
       glowEffects.forEach((el: Element) => {
@@ -38,7 +38,7 @@ const Index = () => {
         (el as HTMLElement).style.setProperty('--y', `${y}%`);
       });
     };
-    
+
     // Enhanced Particle animation for the background using tsparticles
     const setupParticles = () => {
       if (typeof window !== 'undefined' && !document.getElementById('tsparticles')) {
@@ -46,7 +46,9 @@ const Index = () => {
         script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
         script.id = 'tsparticles';
         script.onload = () => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           if ((window as any).particlesJS) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (window as any).particlesJS('particles-js', {
               particles: {
                 number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -106,10 +108,10 @@ const Index = () => {
         document.body.appendChild(script);
       }
     };
-    
+
     setupParticles();
     window.addEventListener('mousemove', handleMouseMove);
-    
+
     // Create a particles container if it doesn't exist
     if (!document.getElementById('particles-js')) {
       const particlesContainer = document.createElement('div');
@@ -123,7 +125,7 @@ const Index = () => {
       particlesContainer.style.opacity = '0.5';
       document.body.prepend(particlesContainer);
     }
-    
+
     // Add SF Pro fonts
     document.documentElement.style.setProperty('--font-heading', '"SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif');
     document.documentElement.style.setProperty('--font-body', '"SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif');
@@ -133,10 +135,10 @@ const Index = () => {
     const checkDeviceAndAdjustStyles = () => {
       const isMobile = window.innerWidth <= 768;
       const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
-      
+
       document.documentElement.style.setProperty('--section-spacing', isMobile ? '4rem' : isTablet ? '5rem' : '7rem');
       document.documentElement.style.setProperty('--content-max-width', isMobile ? '100%' : isTablet ? '90%' : '85%');
-      
+
       // Adjust font sizes for mobile
       if (isMobile) {
         document.documentElement.style.setProperty('--h1-size', '2rem');
@@ -150,11 +152,11 @@ const Index = () => {
         document.documentElement.style.setProperty('--body-size', '1rem');
       }
     };
-    
+
     // Initialize and listen for resize
     checkDeviceAndAdjustStyles();
     window.addEventListener('resize', checkDeviceAndAdjustStyles);
-    
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', checkDeviceAndAdjustStyles);
@@ -168,28 +170,28 @@ const Index = () => {
         <meta name="description" content="Aditya's professional portfolio showcasing skills, experience, projects and more. Bridging creativity and technology to craft digital experiences that matter." />
         <meta name="keywords" content="Aditya, Portfolio, Web Development, Software Engineer, Developer, Technology, Programming" />
         <meta name="author" content="Aditya" />
-        
+
         {/* Open Graph / Social Media */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Aditya - Professional Portfolio" />
         <meta property="og:description" content="Aditya's professional portfolio showcasing skills, experience, projects and more." />
         <meta property="og:image" content="/og-image.png" />
         <meta property="og:url" content="https://aditya-portfolio.com" />
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Aditya - Professional Portfolio" />
         <meta name="twitter:description" content="Aditya's professional portfolio showcasing skills, experience, projects and more." />
         <meta name="twitter:image" content="/og-image.png" />
-        
+
         {/* Viewport and mobile optimization */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="theme-color" content="#0A0A0A" />
-        
+
         {/* Preload critical resources */}
         <link rel="preconnect" href="https://applesocial.s3.amazonaws.com" />
       </Helmet>
-      
+
       <Header />
       <main>
         <Hero />
@@ -201,9 +203,9 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
-      
+
       {/* Custom cursor effect (visible only on desktop) */}
-      <div 
+      <div
         ref={cursorRef}
         className="hidden md:block fixed w-6 h-6 rounded-full pointer-events-none mix-blend-screen z-50 opacity-0 md:opacity-30"
         style={{
