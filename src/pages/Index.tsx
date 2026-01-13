@@ -7,7 +7,13 @@ import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
+import Achievements from "@/components/sections/Achievements";
+import CoreCompetencies from "@/components/sections/CoreCompetencies";
+import ProfessionalProfile from "@/components/sections/ProfessionalProfile";
+import WhatIBringSection from "@/components/sections/WhatIBringSection";
+import ProfessionalInterests from "@/components/sections/ProfessionalInterests";
 import Education from "@/components/sections/Education";
+import LetsConnect from "@/components/sections/LetsConnect";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 
@@ -199,7 +205,13 @@ const Index = () => {
         <Experience />
         <Projects />
         <Skills />
+        <Achievements />
+        <CoreCompetencies />
+        <ProfessionalProfile />
+        <WhatIBringSection />
+        <ProfessionalInterests />
         <Education />
+        <LetsConnect />
         <Contact />
       </main>
       <Footer />
