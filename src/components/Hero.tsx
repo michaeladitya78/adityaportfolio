@@ -62,11 +62,11 @@ export default function Hero() {
             className={`bg-[#0A0A0A] text-[#0077FF] border border-[#0077FF]/30 hover:bg-[#121212] py-1.5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
               }`}
           >
-            <span className="font-['SF_Pro_Display']">{passions[currentPassion]}</span>
+            <span className="font-display">{passions[currentPassion]}</span>
           </Badge>
 
           <h1
-            className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 transition-all duration-700 font-['SF_Pro_Display'] ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
+            className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 transition-all duration-700 font-display ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
               }`}
             style={{ transitionDelay: '100ms' }}
           >
@@ -74,7 +74,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className={`text-xl md:text-2xl text-[#F0F0F0] mb-8 max-w-3xl mx-auto transition-all duration-700 font-['SF_Pro_Text'] ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
+            className={`text-xl md:text-2xl text-[#F0F0F0] mb-8 max-w-3xl mx-auto transition-all duration-700 font-body ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
               }`}
             style={{ transitionDelay: '200ms' }}
           >
@@ -88,13 +88,13 @@ export default function Hero() {
           >
             <Button size="lg" className="bg-[#0077FF] hover:bg-[#0066DD] text-white group relative overflow-hidden" asChild>
               <a href="#projects" className="inline-flex items-center gap-2">
-                <span className="relative z-10 font-['SF_Pro_Text'] font-medium">View My Work</span>
+                <span className="relative z-10 font-body font-medium">View My Work</span>
                 <span className="absolute inset-0 bg-gradient-to-r from-[#0066DD] to-[#0088FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
               </a>
             </Button>
             <Button size="lg" variant="outline" className="border-[#0077FF]/30 text-[#0077FF] hover:text-white hover:bg-[#121212] group relative overflow-hidden" asChild>
               <a href="#contact" className="inline-flex items-center gap-2">
-                <span className="relative z-10 font-['SF_Pro_Text'] font-medium">Get In Touch</span>
+                <span className="relative z-10 font-body font-medium">Get In Touch</span>
                 <span className="absolute inset-0 bg-[#0077FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
               </a>
             </Button>

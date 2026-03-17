@@ -12,9 +12,9 @@ export default function Education() {
     triggerOnce: false,
     threshold: 0.1,
   });
-  
+
   const [isVisible, setIsVisible] = useState(false);
-  
+
   useEffect(() => {
     if (inView) {
       setIsVisible(true);
@@ -22,31 +22,31 @@ export default function Education() {
   }, [inView]);
 
   return (
-    <section id="education" ref={ref} className="section-container py-24 bg-cursor-dark relative">
+    <section id="education" ref={ref} className="section-container py-24 relative">
       {/* Background elements */}
-      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5"></div>
+      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
       <div className="absolute top-1/3 right-0 w-64 h-64 bg-accent/5 rounded-full filter blur-3xl"></div>
       <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-cursor-gray/5 rounded-full filter blur-3xl"></div>
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeading 
-          title="Education & Achievements" 
+        <SectionHeading
+          title="Education & Achievements"
           subtitle="My academic journey and notable accomplishments"
         />
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
           {educationData.map((edu, index) => (
-            <EducationItem 
+            <EducationItem
               key={edu.id}
-              education={edu} 
+              education={edu}
               index={index}
               isVisible={isVisible}
             />
           ))}
         </div>
-        
+
         <AchievementsSection isVisible={isVisible} />
-        
+
         <LearningJourney isVisible={isVisible} />
       </div>
     </section>

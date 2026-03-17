@@ -1,106 +1,141 @@
+import { Link } from 'react-router-dom';
+import { Github, Linkedin, Mail, Twitter, ArrowUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
-import { ArrowUpIcon, Github, Linkedin, Mail } from "lucide-react";
-import { useInView } from "react-intersection-observer";
-import { useState, useEffect } from "react";
+const Footer = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-export default function Footer() {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-  
-  const [isVisible, setIsVisible] = useState(false);
-  
   useEffect(() => {
-    if (inView) {
-      setIsVisible(true);
-    }
-  }, [inView]);
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const footerLinks = {
+    explore: [
+      { label: 'Work', path: '/work' },
+      { label: 'About', path: '/about' },
+      { label: 'Resume', path: '/resume' },
+    ],
+    connect: [
+      { label: 'GitHub', url: 'https://github.com/mitcheladitya', icon: Github },
+      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/aditya-raj-8764a3205/', icon: Linkedin },
+      { label: 'Twitter', url: 'https://twitter.com/yourusername', icon: Twitter },
+      { label: 'Email', url: 'mailto:michaeladitya150@gmail.com', icon: Mail },
+    ],
+  };
 
   return (
-    <footer ref={ref} className="bg-dark-950 text-white py-16 border-t border-dark-800 relative">
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5 pointer-events-none"></div>
-      
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div 
-            className={`transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-            }`}
-          >
-            <div className="mb-6">
-              <h2 className="text-2xl font-heading font-bold text-gradient">Aditya</h2>
-              <p className="text-accent text-sm">Content Creator & Software Engineer</p>
+    <>
+      <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {/* Brand Section */}
+            <div>
+              <Link to="/" className="text-2xl font-serif font-semibold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                Aditya
+              </Link>
+              <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xs">
+                Building digital experiences that inspire and perform. Let's create something amazing together.
+              </p>
             </div>
-            
-            <p className="text-muted-foreground mb-6 max-w-md">
-              Crafting digital experiences through elegant code and compelling content. 
-              Let's create something amazing together.
-            </p>
-            
-            <div className="flex space-x-4">
-              <a 
-                href="https://www.linkedin.com/in/aditya-raj-8764a3205/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-dark-800 border border-dark-700 flex items-center justify-center hover:bg-dark-700 hover:text-accent transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://github.com/mitcheladitya" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-dark-800 border border-dark-700 flex items-center justify-center hover:bg-dark-700 hover:text-accent transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a 
-                href="mailto:michaeladitya150@gmail.com"
-                className="w-10 h-10 rounded-full bg-dark-800 border border-dark-700 flex items-center justify-center hover:bg-dark-700 hover:text-accent transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
+
+            {/* Explore Links */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
+                Explore
+              </h3>
+              <ul className="space-y-3">
+                {footerLinks.explore.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    to="/contact"
+                    className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Connect Section */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
+                Connect
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {footerLinks.connect.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 transition-all"
+                      aria-label={link.label}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
-          
-          <div 
-            className={`transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-            }`}
-          >
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <div className="grid grid-cols-2 gap-2">
-              <a href="#about" className="text-muted-foreground hover:text-accent transition-colors py-1">About</a>
-              <a href="#experience" className="text-muted-foreground hover:text-accent transition-colors py-1">Experience</a>
-              <a href="#projects" className="text-muted-foreground hover:text-accent transition-colors py-1">Projects</a>
-              <a href="#skills" className="text-muted-foreground hover:text-accent transition-colors py-1">Skills</a>
-              <a href="#education" className="text-muted-foreground hover:text-accent transition-colors py-1">Education</a>
-              <a href="#contact" className="text-muted-foreground hover:text-accent transition-colors py-1">Contact</a>
-            </div>
-            
-            <div className="mt-8 pt-8 border-t border-dark-800">
-              <p className="text-muted-foreground text-sm">
-                &copy; {new Date().getFullYear()} Aditya. All rights reserved.
+
+          {/* Bottom Bar */}
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                © {new Date().getFullYear()} Aditya. All rights reserved.
               </p>
+              <div className="flex gap-6 text-sm">
+                <Link
+                  to="/privacy"
+                  className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  to="/terms"
+                  className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                >
+                  Terms
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className="fixed bottom-8 right-8 z-40">
-        <a 
-          href="#" 
-          className="w-10 h-10 rounded-full bg-accent flex items-center justify-center hover:bg-accent-600 transition-colors shadow-lg shadow-accent/20"
-          aria-label="Back to top"
+      </footer>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-accent-500 text-accent-foreground shadow-lg hover:bg-accent-600 transition-all hover:-translate-y-1 hover:shadow-xl flex items-center justify-center"
+          aria-label="Scroll to top"
         >
-          <ArrowUpIcon className="h-5 w-5 text-white" />
-        </a>
-      </div>
-    </footer>
+          <ArrowUp className="w-5 h-5" />
+        </button>
+      )}
+    </>
   );
-}
+};
+
+export default Footer;

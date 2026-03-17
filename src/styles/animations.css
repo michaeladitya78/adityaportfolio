@@ -1,19 +1,62 @@
-
 @import "./theme.css";
 
+/* ====================
+   ANIMATION KEYFRAMES
+   ==================== */
+
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes letter-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) rotateX(-90deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
 @keyframes pulse-subtle {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
   }
+
   50% {
     opacity: 0.6;
   }
@@ -23,15 +66,19 @@
   0% {
     width: 0;
   }
+
   100% {
     width: var(--width, 100%);
   }
 }
 
 @keyframes path-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: drop-shadow(0 0 2px rgba(0, 119, 255, 0.5));
   }
+
   50% {
     filter: drop-shadow(0 0 5px rgba(0, 119, 255, 0.8));
   }
@@ -42,18 +89,36 @@
     opacity: 0;
     transform: translateY(20px) scale(0.9);
   }
+
   70% {
     opacity: 1;
     transform: translateY(-5px) scale(1.03);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
+/* ====================
+   ANIMATION CLASSES
+   ==================== */
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+.animate-letter-reveal {
+  animation: letter-reveal 0.5s ease-out;
 }
 
 .animate-pulse-subtle {
@@ -72,6 +137,10 @@
   animation: skill-pop 0.5s ease-out forwards;
 }
 
+/* ====================
+   UTILITY CLASSES
+   ==================== */
+
 /* Glass effect utilities */
 .glass {
   @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg;
@@ -87,15 +156,17 @@
 }
 
 .text-gradient-primary {
-  @apply bg-gradient-to-r from-[#0077FF] to-[#00C2FF] bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent;
 }
 
+/* Section container utility */
 .section-container {
   @apply py-16 md:py-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto;
 }
 
+/* Grid pattern backgrounds */
 .bg-grid-pattern-dark {
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(31, 31, 31, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(31, 31, 31, 0.1) 1px, transparent 1px);
 }
@@ -108,6 +179,7 @@
   background-size: 40px 40px;
 }
 
+/* Gradient backgrounds */
 .bg-darker-gradient {
   background: linear-gradient(to bottom, #0A0A0A, #111111);
 }

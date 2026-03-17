@@ -75,19 +75,19 @@ export const AchievementsSection = ({ isVisible }: AchievementsSectionProps) => 
   return (
     <div className="mt-12">
       <div className="flex items-center gap-3 mb-8">
-        <div className="h-px flex-1 bg-cursor-light-gray/30"></div>
+        <div className="h-px flex-1 bg-gray-200 dark:bg-gray-700"></div>
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-cursor-darker border border-cursor-light-gray flex items-center justify-center">
+          <div className="h-8 w-8 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center">
             <Award className="h-5 w-5 text-accent" />
           </div>
-          <h3 className="text-xl font-semibold text-gradient font-['SF_Pro_Display']">Achievements</h3>
+          <h3 className="text-xl font-semibold text-gradient font-display">Achievements</h3>
         </div>
-        <div className="h-px flex-1 bg-cursor-light-gray/30"></div>
+        <div className="h-px flex-1 bg-gray-200 dark:bg-gray-700"></div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 relative" ref={achievementsRef}>
         {/* Main path connecting all achievements */}
-        <div className="hidden md:block absolute left-1/2 top-0 h-full w-[3px] bg-cursor-light-gray/20 -translate-x-1/2"></div>
+        <div className="hidden md:block absolute left-1/2 top-0 h-full w-[3px] bg-gray-200 dark:bg-gray-700/50 -translate-x-1/2"></div>
 
         {achievements.map((achievement, idx) => (
           <AchievementItem

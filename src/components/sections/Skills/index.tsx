@@ -25,10 +25,10 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="section-container bg-darker-gradient relative overflow-hidden py-20"
+      className="section-container py-24 relative overflow-hidden"
     >
       {/* Background elements with subtle animations */}
-      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-10"></div>
+      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
 
       {/* Glow effects with pulse animation */}
       <div className="absolute top-1/4 -left-32 w-64 h-64 bg-[#0077FF]/5 rounded-full filter blur-3xl animate-pulse-subtle"></div>

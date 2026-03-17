@@ -212,15 +212,15 @@ export default function Projects() {
               
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 font-['SF_Pro_Display']">{project.title}</h3>
-                <p className="text-muted-foreground mb-4 font-['SF_Pro_Text']">{project.description}</p>
+                <h3 className="text-xl font-semibold mb-2 font-display">{project.title}</h3>
+                <p className="text-muted-foreground mb-4 font-body">{project.description}</p>
                 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, idx) => (
                     <Badge 
                       key={idx} 
-                      className="bg-cursor-darker text-accent hover:bg-cursor-gray font-['SF_Pro_Text']"
+                      className="bg-cursor-darker text-accent hover:bg-cursor-gray font-body"
                     >
                       {tag}
                     </Badge>
@@ -230,7 +230,7 @@ export default function Projects() {
                 {/* Call to action */}
                 <Button 
                   variant="ghost" 
-                  className="group/btn px-0 text-accent hover:bg-transparent font-['SF_Pro_Text']"
+                  className="group/btn px-0 text-accent hover:bg-transparent font-body"
                   asChild
                 >
                   <a href={project.liveUrl !== "#" ? project.liveUrl : project.repoUrl} target="_blank" rel="noopener noreferrer">

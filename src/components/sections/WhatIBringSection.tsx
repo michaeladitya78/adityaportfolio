@@ -63,9 +63,9 @@ export default function WhatIBringSection() {
     ];
 
     return (
-        <section id="what-i-bring" ref={ref} className="section-container py-16 md:py-24 bg-black relative overflow-hidden">
+        <section id="what-i-bring" ref={ref} className="section-container py-16 md:py-24 relative overflow-hidden">
             {/* Background elements */}
-            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5"></div>
+            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
             <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl animate-pulse-subtle"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-tech-600/5 rounded-full filter blur-3xl animate-pulse-subtle" style={{ animationDelay: '2s' }}></div>
 
@@ -79,7 +79,7 @@ export default function WhatIBringSection() {
                     {valueProps.map((prop, idx) => (
                         <Card
                             key={prop.title}
-                            className={`glass-card group bg-black/60 border-dark-800 hover:border-accent/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+                            className={`glass-card group hover:border-accent/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
                                 }`}
                             style={{ transitionDelay: `${idx * 75}ms` }}
                         >
@@ -88,9 +88,9 @@ export default function WhatIBringSection() {
                                     <div className={`w-6 h-6 rounded-md bg-gradient-to-br ${prop.gradient} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform mt-0.5`}>
                                         <CheckCircle2 className="h-4 w-4 text-white" />
                                     </div>
-                                    <h3 className="text-base md:text-lg font-bold font-['SF_Pro_Display'] leading-tight">{prop.title}</h3>
+                                    <h3 className="text-base md:text-lg font-bold font-display leading-tight">{prop.title}</h3>
                                 </div>
-                                <p className="text-sm text-muted-foreground leading-relaxed font-['SF_Pro_Text'] pl-9">
+                                <p className="text-sm text-muted-foreground leading-relaxed font-body pl-9">
                                     {prop.description}
                                 </p>
                             </CardContent>

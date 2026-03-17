@@ -20,26 +20,10 @@ export default function ProfessionalProfile() {
     }, [inView]);
 
     const profileInfo = [
-        {
-            icon: MapPin,
-            label: "Location",
-            value: "Patna, Bihar, India"
-        },
-        {
-            icon: Briefcase,
-            label: "Work Preference",
-            value: "Open to Remote, Hybrid, and On-site opportunities"
-        },
-        {
-            icon: Calendar,
-            label: "Availability",
-            value: "Immediate"
-        },
-        {
-            icon: Globe,
-            label: "Visa Status",
-            value: "Open to relocation and international opportunities"
-        }
+        { icon: MapPin, label: "Location", value: "Patna, Bihar, India" },
+        { icon: Briefcase, label: "Work Preference", value: "Open to Remote, Hybrid, and On-site opportunities" },
+        { icon: Calendar, label: "Availability", value: "Immediate" },
+        { icon: Globe, label: "Visa Status", value: "Open to relocation and international opportunities" }
     ];
 
     const openTo = [
@@ -52,9 +36,9 @@ export default function ProfessionalProfile() {
     ];
 
     return (
-        <section id="professional-profile" ref={ref} className="section-container py-16 md:py-24 bg-darker-gradient relative">
+        <section id="professional-profile" ref={ref} className="section-container py-16 md:py-24 relative">
             {/* Background elements */}
-            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5"></div>
+            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
             <div className="absolute top-1/3 right-0 w-72 h-72 bg-accent/5 rounded-full filter blur-3xl animate-float-slow"></div>
 
             <div className="max-w-6xl mx-auto px-4 relative z-10">
@@ -66,11 +50,11 @@ export default function ProfessionalProfile() {
                 <div className="grid lg:grid-cols-2 gap-8">
                     {/* Profile Information Card */}
                     <Card
-                        className={`glass-card bg-black/60 border-dark-800 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-16'
+                        className={`glass-card transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-16'
                             }`}
                     >
                         <CardContent className="p-6 md:p-8">
-                            <h3 className="text-2xl font-bold mb-6 font-['SF_Pro_Display'] flex items-center gap-2">
+                            <h3 className="text-2xl font-bold mb-6 font-display flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
                                     <Briefcase className="h-4 w-4 text-white" />
                                 </div>
@@ -89,8 +73,8 @@ export default function ProfessionalProfile() {
                                                 <Icon className="h-5 w-5 text-accent" />
                                             </div>
                                             <div>
-                                                <p className="text-sm text-muted-foreground mb-1 font-['SF_Pro_Text']">{info.label}</p>
-                                                <p className="text-base font-semibold font-['SF_Pro_Display']">{info.value}</p>
+                                                <p className="text-sm text-muted-foreground mb-1 font-body">{info.label}</p>
+                                                <p className="text-base font-semibold font-display">{info.value}</p>
                                             </div>
                                         </div>
                                     );
@@ -101,12 +85,12 @@ export default function ProfessionalProfile() {
 
                     {/* Open To Card */}
                     <Card
-                        className={`glass-card bg-black/60 border-dark-800 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16'
+                        className={`glass-card transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16'
                             }`}
                         style={{ transitionDelay: '200ms' }}
                     >
                         <CardContent className="p-6 md:p-8">
-                            <h3 className="text-2xl font-bold mb-6 font-['SF_Pro_Display'] flex items-center gap-2">
+                            <h3 className="text-2xl font-bold mb-6 font-display flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center">
                                     <CheckCircle2 className="h-4 w-4 text-white" />
                                 </div>
@@ -122,7 +106,7 @@ export default function ProfessionalProfile() {
                                         <div className="w-5 h-5 rounded-full bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
                                             <CheckCircle2 className="h-3 w-3 text-white" />
                                         </div>
-                                        <span className="text-sm md:text-base text-muted-foreground leading-relaxed font-['SF_Pro_Text'] group-hover:text-white transition-colors">
+                                        <span className="text-sm md:text-base text-muted-foreground leading-relaxed font-body group-hover:text-foreground transition-colors">
                                             {item}
                                         </span>
                                     </li>

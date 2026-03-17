@@ -61,9 +61,9 @@ export default function Achievements() {
     ];
 
     return (
-        <section id="achievements" ref={ref} className="section-container py-16 md:py-24 bg-darker-gradient relative">
+        <section id="achievements" ref={ref} className="section-container py-16 md:py-24 relative">
             {/* Background elements */}
-            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5"></div>
+            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
             <div className="absolute top-1/4 left-0 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl animate-float-slow"></div>
             <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-tech-600/5 rounded-full filter blur-3xl animate-float-slow" style={{ animationDelay: '2s' }}></div>
 
@@ -79,18 +79,18 @@ export default function Achievements() {
                         return (
                             <Card
                                 key={achievement.title}
-                                className={`glass-card ${deviceType === 'desktop' ? 'group hover:scale-105' : ''} bg-black/60 border-dark-800 hover:border-accent/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+                                className={`glass-card ${deviceType === 'desktop' ? 'group hover:scale-105' : ''} hover:border-accent/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
                                     }`}
                                 style={{ transitionDelay: `${idx * 100}ms` }}
                             >
                                 <CardContent className="p-6">
                                     <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${achievement.color} p-0.5 mb-4 ${deviceType === 'desktop' ? 'group-hover:scale-110' : ''} transition-transform duration-300`}>
-                                        <div className="w-full h-full rounded-xl bg-black/90 flex items-center justify-center">
-                                            <Icon className="text-white h-6 w-6" />
+                                        <div className="w-full h-full rounded-xl bg-white dark:bg-black/90 flex items-center justify-center">
+                                            <Icon className="text-gray-900 dark:text-white h-6 w-6" />
                                         </div>
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-2 font-['SF_Pro_Display']">{achievement.title}</h3>
-                                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-['SF_Pro_Text']">
+                                    <h3 className="text-xl font-semibold mb-2 font-display">{achievement.title}</h3>
+                                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-body">
                                         {achievement.description}
                                     </p>
                                 </CardContent>

@@ -77,9 +77,9 @@ export default function CoreCompetencies() {
     ];
 
     return (
-        <section id="core-competencies" ref={ref} className="section-container py-16 md:py-24 bg-black relative overflow-hidden">
+        <section id="core-competencies" ref={ref} className="section-container py-16 md:py-24 relative overflow-hidden">
             {/* Background elements */}
-            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5"></div>
+            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl animate-pulse-subtle"></div>
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-tech-600/5 rounded-full filter blur-3xl animate-pulse-subtle" style={{ animationDelay: '1s' }}></div>
 
@@ -95,25 +95,25 @@ export default function CoreCompetencies() {
                         return (
                             <Card
                                 key={competency.title}
-                                className={`glass-card ${deviceType === 'desktop' ? 'group hover:scale-[1.02]' : ''} bg-black/60 border-dark-800 hover:border-accent/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-16'
+                                className={`glass-card ${deviceType === 'desktop' ? 'group hover:scale-[1.02]' : ''} hover:border-accent/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-16'
                                     }`}
                                 style={{ transitionDelay: `${idx * 150}ms` }}
                             >
                                 <CardContent className="p-6">
                                     <div className="flex items-start gap-4 mb-4">
                                         <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${competency.color} p-0.5 flex-shrink-0`}>
-                                            <div className="w-full h-full rounded-lg bg-black/90 flex items-center justify-center">
-                                                <Icon className="text-white h-5 w-5" />
+                                            <div className="w-full h-full rounded-lg bg-white dark:bg-black/90 flex items-center justify-center">
+                                                <Icon className="text-gray-900 dark:text-white h-5 w-5" />
                                             </div>
                                         </div>
-                                        <h3 className="text-xl md:text-2xl font-bold font-['SF_Pro_Display'] mt-1">{competency.title}</h3>
+                                        <h3 className="text-xl md:text-2xl font-bold font-display mt-1">{competency.title}</h3>
                                     </div>
 
                                     <ul className="space-y-2.5">
                                         {competency.skills.map((skill, skillIdx) => (
                                             <li
                                                 key={skillIdx}
-                                                className="flex items-start gap-3 text-muted-foreground font-['SF_Pro_Text']"
+                                                className="flex items-start gap-3 text-muted-foreground font-body"
                                             >
                                                 <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${competency.color} mt-2 flex-shrink-0`}></div>
                                                 <span className="text-sm md:text-base leading-relaxed">{skill}</span>

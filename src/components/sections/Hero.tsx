@@ -79,19 +79,17 @@ export default function Hero() {
     <section
       id="home"
       ref={(node) => {
-        // @ts-expect-error - This is a valid pattern to merge refs
         ref(node);
-        // @ts-expect-error - This is a valid pattern to merge refs
-        heroRef.current = node;
+        (heroRef as React.MutableRefObject<HTMLElement | null>).current = node;
       }}
-      className="relative min-h-[85vh] flex items-center justify-center pt-20 pb-12 overflow-hidden bg-[#0A0A0A]"
+      className="relative min-h-[85vh] flex items-center justify-center pt-20 pb-12 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#0A0A0A] dark:to-[#121212]"
     >
       {/* Animated background elements */}
-      <div className="absolute inset-0 bg-dots-pattern bg-dots-sm opacity-5"></div>
-      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5"></div>
+      <div className="absolute inset-0 bg-dots-pattern bg-dots-sm opacity-[0.03] dark:opacity-5"></div>
+      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
 
       {/* Dynamic gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] to-[#121212] opacity-90"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#0A0A0A] dark:to-[#121212] opacity-90"></div>
 
       {/* Interactive gradient overlay that follows mouse */}
       {deviceType === 'desktop' && (
@@ -113,14 +111,14 @@ export default function Hero() {
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <Badge
-            className={`bg-[#0A0A0A] text-[#0077FF] border border-[#0077FF]/30 hover:bg-[#121212] py-1.5 transition-all duration-700 transform hover:scale-105 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
+            className={`bg-white/80 dark:bg-[#0A0A0A] text-[#0077FF] border border-[#0077FF]/30 hover:bg-gray-50 dark:hover:bg-[#121212] py-1.5 transition-all duration-700 transform hover:scale-105 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
               }`}
           >
-            <span className="font-['SF_Pro_Display'] text-sm sm:text-base">{passions[currentPassion]}</span>
+            <span className="font-display text-sm sm:text-base">{passions[currentPassion]}</span>
           </Badge>
 
           <h1
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 transition-all duration-700 font-['SF_Pro_Display'] ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 transition-all duration-700 font-display text-gray-900 dark:text-white ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
               }`}
             style={{ transitionDelay: '100ms' }}
           >
@@ -128,7 +126,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className={`text-lg sm:text-xl md:text-2xl text-[#F0F0F0] mb-8 max-w-3xl mx-auto transition-all duration-700 font-['SF_Pro_Text'] px-4 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
+            className={`text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-[#F0F0F0] mb-8 max-w-3xl mx-auto transition-all duration-700 font-body px-4 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
               }`}
             style={{ transitionDelay: '200ms' }}
           >
@@ -142,13 +140,13 @@ export default function Hero() {
           >
             <Button size="lg" className="bg-[#0077FF] hover:bg-[#0066DD] text-white group relative overflow-hidden w-full sm:w-auto" asChild>
               <a href="#projects" className="inline-flex items-center gap-2">
-                <span className="relative z-10 font-['SF_Pro_Text'] font-medium">View My Work</span>
+                <span className="relative z-10 font-body font-medium">View My Work</span>
                 <span className="absolute inset-0 bg-gradient-to-r from-[#0066DD] to-[#0088FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="border-[#0077FF]/30 text-[#0077FF] hover:text-white hover:bg-[#121212] group relative overflow-hidden w-full sm:w-auto" asChild>
+            <Button size="lg" variant="outline" className="border-[#0077FF]/30 text-[#0077FF] hover:text-white hover:bg-[#0077FF] dark:hover:bg-[#121212] group relative overflow-hidden w-full sm:w-auto" asChild>
               <a href="#contact" className="inline-flex items-center gap-2">
-                <span className="relative z-10 font-['SF_Pro_Text'] font-medium">Get In Touch</span>
+                <span className="relative z-10 font-body font-medium">Get In Touch</span>
                 <span className="absolute inset-0 bg-[#0077FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
               </a>
             </Button>
@@ -163,7 +161,7 @@ export default function Hero() {
       >
         <a
           href="#about"
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0A0A0A] border border-[#121212] shadow-lg hover:bg-[#121212] hover:border-[#0077FF]/50 transition-all"
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-[#0A0A0A] border border-gray-200 dark:border-[#121212] shadow-lg hover:bg-gray-50 dark:hover:bg-[#121212] hover:border-[#0077FF]/50 transition-all"
           aria-label="Scroll to About section"
         >
           <ArrowDownIcon size={20} className="text-[#0077FF]" />

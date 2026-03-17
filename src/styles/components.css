@@ -1,85 +1,94 @@
-
 @layer components {
+
+  /* ===== PATTERN BACKGROUNDS ===== */
   .bg-dots-pattern {
     background-image: radial-gradient(circle, var(--cursor-light-gray) 1px, transparent 1px);
     background-size: 15px 15px;
   }
-  
+
   .bg-grid-pattern-dark {
-    background-image: 
+    background-image:
       linear-gradient(to right, var(--cursor-gray) 1px, transparent 1px),
       linear-gradient(to bottom, var(--cursor-gray) 1px, transparent 1px);
     background-size: 25px 25px;
   }
-  
+
+  /* ===== FONT UTILITIES ===== */
   .font-heading {
     font-family: var(--font-heading);
   }
-  
+
   .font-body {
     font-family: var(--font-body);
   }
-  
+
   .font-code {
     font-family: var(--font-code);
   }
-  
+
+  /* ===== BACKGROUND UTILITIES ===== */
   .bg-cursor-dark {
     background-color: var(--cursor-dark);
   }
-  
+
   .bg-cursor-darker {
     background-color: var(--cursor-darker);
   }
-  
+
   .bg-cursor-light {
     background-color: var(--cursor-light);
   }
-  
+
   .bg-cursor-gray {
     background-color: var(--cursor-gray);
   }
-  
+
   .bg-cursor-light-gray {
     background-color: var(--cursor-light-gray);
   }
-  
+
   .border-cursor-gray {
     border-color: var(--cursor-gray);
   }
-  
+
   .dark-800 {
-    background-color: hsl(0, 0%, 9%); /* #171717 */
+    background-color: hsl(0, 0%, 9%);
   }
-  
+
   .border-dark-800 {
-    border-color: hsl(0, 0%, 9%); /* #171717 */
+    border-color: hsl(0, 0%, 9%);
   }
-  
+
   .bg-dark-800 {
-    background-color: hsl(0, 0%, 9%); /* #171717 */
+    background-color: hsl(0, 0%, 9%);
   }
-  
+
   .bg-dark-900 {
-    background-color: hsl(0, 0%, 6%); /* #0F0F0F */
+    background-color: hsl(0, 0%, 6%);
   }
-  
+
+  /* ===== GRADIENT BACKGROUNDS — THEME-AWARE ===== */
   .bg-cursor-gradient {
-    background: radial-gradient(circle at center, hsl(0, 0%, 7%) 0%, hsl(0, 0%, 3%) 100%);
+    background: radial-gradient(circle at center, hsl(var(--background)) 0%, hsl(var(--background)) 100%);
   }
-  
+
+  .bg-darker-gradient {
+    background: hsl(var(--background));
+  }
+
   .bg-cursor-glow {
-    background: 
-      radial-gradient(circle at 25% 25%, #0077FF -30%, transparent 125%),
-      radial-gradient(circle at 75% 75%, #0077FF -30%, transparent 125%);
+    background:
+      radial-gradient(circle at 25% 25%, hsl(var(--accent)) -30%, transparent 125%),
+      radial-gradient(circle at 75% 75%, hsl(var(--accent)) -30%, transparent 125%);
     opacity: 0.05;
   }
-  
+
+  /* ===== TEXT GRADIENT ===== */
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0077FF] to-[#20C997];
     position: relative;
   }
-  
+
   .highlight::after {
     content: '';
     position: absolute;
@@ -91,21 +100,21 @@
     z-index: -1;
     opacity: 0.5;
   }
-  
+
+  /* ===== GLOW EFFECT ===== */
   .glow-effect {
-    background: radial-gradient(
-      circle at var(--x, 50%) var(--y, 50%),
-      #0077FF 0%,
-      transparent 50%
-    );
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+        hsl(var(--accent)) 0%,
+        transparent 50%);
     filter: blur(50px);
   }
-  
+
+  /* ===== BINARY CODE BACKGROUND ===== */
   .binary-code-background {
     position: relative;
     overflow: hidden;
   }
-  
+
   .binary-code-background::before {
     content: "01";
     position: absolute;
@@ -122,17 +131,142 @@
     opacity: 0.1;
     transform: rotate(10deg);
   }
-  
+
+  /* ===== GLASS CARD — THEME-AWARE, MULTI-TIER ===== */
+
+  /* --- Tier 1: Standard Glass Card (subtle, everyday use) --- */
   .glass-card {
-    background: rgba(10, 10, 10, 0.5);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
     border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  .glass-card:hover {
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      0 0 0 1px rgba(0, 119, 255, 0.08);
+    border-color: rgba(0, 119, 255, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .dark .glass-card {
+    background: rgba(10, 10, 10, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .dark .glass-card:hover {
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 119, 255, 0.2);
+  }
+
+  /* --- Tier 2: Frosted Glass (stronger blur, more opaque) --- */
+  .glass-card-frosted {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .glass-card-frosted {
+    background: rgba(15, 15, 20, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  /* --- Tier 3: Liquid Glass (Apple-inspired, premium) --- */
+  .glass-card-liquid {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0.8) 100%);
+    backdrop-filter: blur(40px) saturate(200%) brightness(105%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(105%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-liquid:hover {
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+  }
+
+  .dark .glass-card-liquid {
+    background: linear-gradient(135deg,
+        rgba(20, 20, 30, 0.7) 0%,
+        rgba(10, 10, 20, 0.5) 50%,
+        rgba(20, 20, 30, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .dark .glass-card-liquid:hover {
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 119, 255, 0.15);
+  }
+
+  /* ===== GLASS ICON CONTAINER ===== */
+  .glass-icon {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
     transition: all 0.3s ease;
   }
-  
-  .glass-card:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border-color: rgba(0, 119, 255, 0.2);
+
+  .dark .glass-icon {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ===== ACCESSIBILITY: Text on Glass ===== */
+  /* Use on text that sits directly on blurred glass backgrounds */
+  .glass-text-readable {
+    text-shadow: 0 0 8px hsl(var(--background));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Stronger version for body text on very transparent glass */
+  .glass-text-strong {
+    text-shadow: 0 1px 3px hsl(var(--background));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 500;
+    /* bump weight for contrast */
+  }
+
+  /* ===== SECTION CONTAINER — THEME-AWARE ===== */
+  .section-container {
+    @apply px-4 sm:px-6 lg:px-8;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
