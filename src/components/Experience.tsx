@@ -63,14 +63,14 @@ export default function Experience() {
       <div className="absolute bottom-1/3 -right-32 w-64 h-64 bg-cursor-light-gray/5 rounded-full filter blur-3xl"></div>
       
       <div className="max-w-4xl mx-auto relative z-10">
-        <SectionHeading 
-          title="Professional Experience" 
-          subtitle="My journey creating content and building digital experiences"
+        <SectionHeading
+          title="Professional Experience"
+          subtitle="Building products and shipping features across logistics, fintech, and AI domains"
         />
         
         <div className="relative mt-16" ref={timelineRef}>
           {/* Main timeline path */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-[#1F1F1F]"></div>
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-border" />
           
           {experiences.map((exp, index) => (
             <ExperienceItem 

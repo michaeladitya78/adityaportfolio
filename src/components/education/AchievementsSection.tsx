@@ -73,21 +73,41 @@ export const AchievementsSection = ({ isVisible }: AchievementsSectionProps) => 
   }, [isVisible]);
 
   return (
-    <div className="mt-12">
-      <div className="flex items-center gap-3 mb-8">
-        <div className="h-px flex-1 bg-gray-200 dark:bg-gray-700"></div>
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center">
-            <Award className="h-5 w-5 text-accent" />
+    <div className="mt-20">
+      <style>{`
+        @keyframes shimmerProgressBar {
+          0% { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+        @keyframes shimmerProgressBarVertical {
+          0% { background-position: center 200%; }
+          100% { background-position: center -200%; }
+        }
+      `}</style>
+      <div className="flex items-center gap-4 mb-12">
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/30 flex items-center justify-center">
+            <Award className="h-6 w-6 text-[#64CEFB]" />
           </div>
-          <h3 className="text-xl font-semibold text-gradient font-display">Achievements</h3>
+          <h3 className="text-2xl font-bold font-display text-gray-900 dark:text-white">Achievements</h3>
         </div>
-        <div className="h-px flex-1 bg-gray-200 dark:bg-gray-700"></div>
+        <div className="relative h-1 flex-1 bg-gradient-to-r from-[#64CEFB] via-[#8B5CF6] to-transparent dark:to-transparent bg-[length:200%_auto] rounded-full overflow-hidden"
+             style={{ animation: 'shimmerProgressBar 3s linear infinite' }}>
+          <div className="absolute inset-0 opacity-30 mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==")' }}></div>
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 relative" ref={achievementsRef}>
         {/* Main path connecting all achievements */}
-        <div className="hidden md:block absolute left-1/2 top-0 h-full w-[3px] bg-gray-200 dark:bg-gray-700/50 -translate-x-1/2"></div>
+        <div className="hidden md:block absolute left-1/2 top-0 h-full w-[4px] bg-gray-200 dark:bg-white/5 -translate-x-1/2 rounded-full overflow-hidden">
+          <div 
+            className="absolute left-0 top-0 w-full h-full bg-gradient-to-b from-[#64CEFB] via-[#8B5CF6] to-[#64CEFB] bg-[length:auto_200%] rounded-full opacity-60 dark:opacity-80"
+            style={{ animation: 'shimmerProgressBarVertical 3s linear infinite' }}
+          >
+            {/* Glittery pattern overlay */}
+            <div className="absolute inset-0 opacity-40 mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==")' }}></div>
+          </div>
+        </div>
 
         {achievements.map((achievement, idx) => (
           <AchievementItem

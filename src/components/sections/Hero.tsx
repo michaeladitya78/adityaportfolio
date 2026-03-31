@@ -1,175 +1,372 @@
+import { ArrowDownIcon, Github, Linkedin, Mail, MapPin, Briefcase, ArrowUpRight } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 
-import { ArrowDownIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { useInView } from "react-intersection-observer";
-import { useState, useEffect, useRef } from "react";
-import { useDeviceType } from "@/hooks/use-mobile";
-
-const passions = [
-  "Building Digital Experiences",
-  "Crafting Content",
-  "Solving Problems",
-  "Engineering Solutions",
-  "Analyzing Data",
-  "Leading Teams"
+/* ── Role cycling data ─────────────────────────────────────────────────── */
+const roles = [
+  "Product Manager",
+  "Full-Stack Engineer",
+  "AI / ML Developer",
+  "Team Leader",
 ];
 
+/* ── Floating achievement stats ─────────────────────────────────────────── */
+const stats = [
+  { value: "5+",  label: "Products Shipped" },
+  { value: "3+",  label: "Years Building"   },
+  { value: "10+", label: "Clients Served"   },
+];
+
+/* ── Social links ────────────────────────────────────────────────────────── */
+const socials = [
+  { href: "https://github.com/michaeladitya78",              icon: Github,   label: "GitHub"   },
+  { href: "https://www.linkedin.com/in/aditya-raj-8764a3205/", icon: Linkedin, label: "LinkedIn" },
+  { href: "mailto:michaeladitya150@gmail.com",               icon: Mail,     label: "Email"    },
+];
+
+/* ══════════════════════════════════════════════
+   HERO COMPONENT
+   ══════════════════════════════════════════════ */
 export default function Hero() {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
+  const [currentRole, setCurrentRole] = useState(0);
+  const [roleFade, setRoleFade]       = useState(true);
+  const [mounted, setMounted]         = useState(false);
+  const [mousePos, setMousePos]       = useState({ x: 0, y: 0 });
+  const [hoveredBtn, setHoveredBtn]   = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const glowRef    = useRef<HTMLDivElement>(null);
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentPassion, setCurrentPassion] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef<HTMLElement>(null);
-  const deviceType = useDeviceType();
-
+  /* Mount stagger entrance */
   useEffect(() => {
-    if (inView) {
-      setIsVisible(true);
-    }
-  }, [inView]);
+    const t = setTimeout(() => setMounted(true), 80);
+    return () => clearTimeout(t);
+  }, []);
 
-  // Passion cycling effect
+  /* Role cycling — 3.6 s crossfade */
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentPassion((prev) => (prev + 1) % passions.length);
-    }, 2000);
-
+      setRoleFade(false);
+      setTimeout(() => {
+        setCurrentRole((p) => (p + 1) % roles.length);
+        setRoleFade(true);
+      }, 340);
+    }, 3600);
     return () => clearInterval(interval);
   }, []);
 
-  // Interactive mouse effect for the hero section (only on desktop)
+  /* Cursor-tracking glow orb — magnetic background effect */
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (!sectionRef.current || !glowRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width)  * 100;
+    const y = ((e.clientY - rect.top)  / rect.height) * 100;
+    setMousePos({ x, y });
+    glowRef.current.style.background =
+      `radial-gradient(600px circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px,
+        hsl(var(--accent) / 0.08) 0%, transparent 70%)`;
+  }, []);
+
   useEffect(() => {
-    if (deviceType !== 'desktop') return;
+    const el = sectionRef.current;
+    if (!el) return;
+    el.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => el.removeEventListener("mousemove", handleMouseMove);
+  }, [handleMouseMove]);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-
-      const rect = heroRef.current.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-      setMousePosition({ x, y });
-
-      // Update glow effect position
-      const glowElements = heroRef.current.querySelectorAll('.glow-effect');
-      glowElements.forEach((el) => {
-        (el as HTMLElement).style.setProperty('--x', `${x}%`);
-        (el as HTMLElement).style.setProperty('--y', `${y}%`);
-      });
-    };
-
-    const heroElement = heroRef.current;
-    if (heroElement) {
-      heroElement.addEventListener('mousemove', handleMouseMove);
-    }
-
-    return () => {
-      if (heroElement) {
-        heroElement.removeEventListener('mousemove', handleMouseMove);
-      }
-    };
-  }, [deviceType]);
+  /* Magnetic button helper — subtle pull toward cursor */
+  const getMagneticStyle = (btnId: string, defaultStyle: React.CSSProperties): React.CSSProperties => {
+    if (hoveredBtn !== btnId) return defaultStyle;
+    return defaultStyle; /* Scale handled by CSS */
+  };
 
   return (
     <section
       id="home"
-      ref={(node) => {
-        ref(node);
-        (heroRef as React.MutableRefObject<HTMLElement | null>).current = node;
+      aria-label="Hero"
+      ref={sectionRef}
+      className="relative w-full h-[100dvh] flex flex-col justify-center overflow-hidden bg-black text-white/80"
+      style={{
+        paddingTop: "clamp(5rem, 10vw, 8rem)",
+        zIndex: 1,
       }}
-      className="relative min-h-[85vh] flex items-center justify-center pt-20 pb-12 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#0A0A0A] dark:to-[#121212]"
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-dots-pattern bg-dots-sm opacity-[0.03] dark:opacity-5"></div>
-      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
+      {/* ── Background Video — from Reference ── */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ filter: "brightness(0.35) contrast(1.1) saturate(1.2)" }}
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4"
+      />
 
-      {/* Dynamic gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#0A0A0A] dark:to-[#121212] opacity-90"></div>
+      {/* ── Background Overlay ── */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20 z-0 pointer-events-none" />
 
-      {/* Interactive gradient overlay that follows mouse */}
-      {deviceType === 'desktop' && (
-        <div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x,_25%)_var(--y,_25%),#0077FF_-30%,transparent_125%)]"
-          style={{
-            opacity: 0.07,
-            transition: 'opacity 0.3s ease',
-            '--x': `${mousePosition.x}%`,
-            '--y': `${mousePosition.y}%`
-          } as React.CSSProperties}
-        ></div>
-      )}
+      {/* ── ShinyText Animation Keyframes ── */}
+      <style>{`
+        @keyframes shine {
+          0% { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+      `}</style>
 
-      {/* Animated tech pattern elements with hover effect */}
-      <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-[#0077FF]/5 rounded-full filter blur-3xl animate-float-slow transform transition-transform duration-300 hover:scale-110"></div>
-      <div className="absolute bottom-1/4 right-1/6 w-64 h-64 bg-[#20C997]/10 rounded-full filter blur-3xl animate-float-slow transform transition-transform duration-300 hover:scale-110" style={{ animationDelay: '1s' }}></div>
-
-      <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <Badge
-            className={`bg-white/80 dark:bg-[#0A0A0A] text-[#0077FF] border border-[#0077FF]/30 hover:bg-gray-50 dark:hover:bg-[#121212] py-1.5 transition-all duration-700 transform hover:scale-105 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
-              }`}
-          >
-            <span className="font-display text-sm sm:text-base">{passions[currentPassion]}</span>
-          </Badge>
-
-          <h1
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 transition-all duration-700 font-display text-gray-900 dark:text-white ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
-              }`}
-            style={{ transitionDelay: '100ms' }}
-          >
-            Hey, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0077FF] to-[#20C997] hover:animate-text-shimmer">Aditya</span>
-          </h1>
-
-          <p
-            className={`text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-[#F0F0F0] mb-8 max-w-3xl mx-auto transition-all duration-700 font-body px-4 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
-              }`}
-            style={{ transitionDelay: '200ms' }}
-          >
-            Bridging creativity and technology to craft digital experiences that matter
-          </p>
-
+      {/* ── Main content container (z-10 relative) ── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 h-full flex flex-col">
+        
+        {/* ── Top Section (Stats right-aligned on large screens per reference) ── */}
+        <div className="w-full flex justify-end pt-12 lg:pt-8 md:mb-12">
           <div
-            className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
-              }`}
-            style={{ transitionDelay: '300ms' }}
+            className="flex md:flex-col gap-6 md:gap-4 md:items-end text-right"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(-10px)",
+              transition: "all 800ms 200ms ease-out",
+            }}
           >
-            <Button size="lg" className="bg-[#0077FF] hover:bg-[#0066DD] text-white group relative overflow-hidden w-full sm:w-auto" asChild>
-              <a href="#projects" className="inline-flex items-center gap-2">
-                <span className="relative z-10 font-body font-medium">View My Work</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-[#0066DD] to-[#0088FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
-              </a>
-            </Button>
-            <Button size="lg" variant="outline" className="border-[#0077FF]/30 text-[#0077FF] hover:text-white hover:bg-[#0077FF] dark:hover:bg-[#121212] group relative overflow-hidden w-full sm:w-auto" asChild>
-              <a href="#contact" className="inline-flex items-center gap-2">
-                <span className="relative z-10 font-body font-medium">Get In Touch</span>
-                <span className="absolute inset-0 bg-[#0077FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
-              </a>
-            </Button>
+            {stats.map(({ value, label }, i) => (
+              <div key={label} className="flex flex-col mb-2">
+                <span className="text-white font-semibold text-lg md:text-xl lg:text-2xl leading-tight">
+                  {value}
+                </span>
+                <span className="text-white/60 text-xs md:text-sm tracking-wide">
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
 
-      <div
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce transition-all duration-700 hover:animate-none hover:scale-110 ${isVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        style={{ transitionDelay: '400ms' }}
-      >
-        <a
-          href="#about"
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-[#0A0A0A] border border-gray-200 dark:border-[#121212] shadow-lg hover:bg-gray-50 dark:hover:bg-[#121212] hover:border-[#0077FF]/50 transition-all"
-          aria-label="Scroll to About section"
+        {/* ── Center Section: Main Hero ── */}
+        <div className="flex-1 flex flex-col justify-center max-w-3xl">
+        {/* ── Role pill (Aligned left) ── */}
+        <div
+          className="flex items-center justify-start mb-6"
+          style={{
+            opacity: mounted ? 1 : 0,
+            transition: "opacity 600ms 300ms cubic-bezier(0.0,0.0,0.2,1)",
+          }}
         >
-          <ArrowDownIcon size={20} className="text-[#0077FF]" />
-        </a>
+          {/* Pill card — minimalist styling via Phase-3 Glass System */}
+          <div className="glass-pill inline-flex items-center gap-2 px-4 py-1.5">
+            <span
+              style={{
+                width: "6px",
+                height: "6px",
+                borderRadius: "50%",
+                background: "#64CEFB",
+                opacity: roleFade ? 1 : 0,
+                transition: "opacity 340ms ease",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.8125rem",
+                fontWeight: 600,
+                letterSpacing: "0.04em",
+                color: "rgba(255,255,255,0.9)",
+                opacity: roleFade ? 1 : 0,
+                transform: roleFade ? "translateY(0)" : "translateY(-4px)",
+                transition: "opacity 340ms ease, transform 340ms ease",
+                whiteSpace: "nowrap",
+                textTransform: "uppercase",
+              }}
+            >
+              {roles[currentRole]}
+            </span>
+          </div>
+        </div>
+
+        {/* ── Main Headline (ShinyText Effect) ── */}
+        <h1
+          className="text-left"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(3rem, 8vw, 6rem)", // Maps to text-5xl to text-9xl
+            fontWeight: 700,
+            letterSpacing: "-0.04em", // tight tracking per reference
+            lineHeight: 0.95, // tight line height
+            color: "#ffffff", // Strict white per reference
+            marginBottom: "1.5rem",
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 900ms 400ms cubic-bezier(0.0,0.0,0.2,1), transform 900ms 400ms cubic-bezier(0.0,0.0,0.2,1)",
+          }}
+        >
+          Hi, I'm{" "}
+          <span
+            className="block sm:inline"
+            style={{
+              /* ShinyText CSS implementation */
+              background: "linear-gradient(100deg, #64CEFB 20%, #ffffff 50%, #64CEFB 80%)",
+              backgroundSize: "200% auto",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+              display: "inline-block",
+              animation: "shine 3s linear infinite",
+            }}
+          >
+            Aditya
+          </span>
+        </h1>
+
+        {/* ── Tagline ── */}
+        <p
+          className="text-left"
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "var(--type-body-lg)",
+            fontWeight: "var(--weight-regular)",
+            lineHeight: "1.6",
+            color: "rgba(255,255,255,0.7)", // white/70 opacity
+            maxWidth: "520px",
+            marginBottom: "2.5rem",
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? "translateY(0)" : "translateY(16px)",
+            transition: "opacity 700ms 550ms cubic-bezier(0.0,0.0,0.2,1), transform 700ms 550ms cubic-bezier(0.0,0.0,0.2,1)",
+          }}
+        >
+          Engineering future-ready products with a blend of{" "}
+          <strong className="text-white font-medium">AI innovation</strong>,{" "}
+          <strong className="text-white font-medium">technical execution</strong>, and{" "}
+          <strong className="text-white font-medium">strategic thinking</strong>.
+        </p>
+
+        {/* ── Meta row ── */}
+        <div
+          className="flex flex-wrap items-center justify-start gap-x-5 gap-y-2 mb-10 text-white/60"
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "var(--type-subhead)",
+            opacity: mounted ? 1 : 0,
+            transition: "opacity 700ms 650ms eaee-out",
+          }}
+        >
+          <span className="flex items-center gap-1.5 font-medium">
+            <MapPin size={14} className="text-[#64CEFB]" />
+            NIT Patna, India
+          </span>
+          <span className="text-white/20">|</span>
+          <span className="flex items-center gap-1.5 font-medium">
+            <Briefcase size={14} className="text-[#64CEFB]" />
+            Open to global roles
+          </span>
+        </div>
+
+        {/* ── CTAs — Reference Design implementation ── */}
+        <div
+          className="flex flex-wrap items-center justify-start gap-4 mb-16"
+          style={{
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? "translateY(0)" : "translateY(12px)",
+            transition: "opacity 700ms 750ms ease-out, transform 700ms 750ms ease-out",
+          }}
+        >
+          {/* Default CTA adapted to Reference Style with Glass Wrapper */}
+          <div className="glass-btn-wrapper">
+            <Link
+              to="/work"
+              className="group inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-3.5 rounded-full font-semibold transition-all duration-300"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.9375rem",
+                background: "var(--bg-base)",
+                color: "#ffffff",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.02)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+              }}
+            >
+            View My Work
+            <ArrowUpRight
+              size={18}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+            </Link>
+          </div>
+
+          {/* Socials embedded on left alignment */}
+          <div className="flex items-center gap-3">
+            {socials.map(({ href, icon: Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+                style={{
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  color: "rgba(255,255,255,0.7)",
+                  background: "rgba(255,255,255,0.05)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(100,206,251,0.15)";
+                  e.currentTarget.style.color = "#ffffff";
+                  e.currentTarget.style.borderColor = "rgba(100,206,251,0.5)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                  e.currentTarget.style.color = "rgba(255,255,255,0.7)";
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <Icon size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
+
+      </div>
       </div>
 
-      {/* Interactive glow effect for mouse movement */}
-      <div className="glow-effect absolute inset-0 opacity-20 pointer-events-none"></div>
+      {/* ── Scroll cue ── */}
+      <a
+        href="#about"
+        aria-label="Scroll to About"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 group"
+        style={{
+          zIndex: 20,
+          opacity: mounted ? 0.5 : 0,
+          transition: "opacity 700ms 1100ms cubic-bezier(0.0,0.0,0.2,1)",
+          textDecoration: "none",
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.opacity = "1"; }}
+        onMouseLeave={(e) => { e.currentTarget.style.opacity = "0.5"; }}
+      >
+        <div
+          className="w-9 h-9 rounded-full flex items-center justify-center border animate-bounce"
+          style={{
+            borderColor: "rgba(255,255,255,0.2)",
+            background: "rgba(255,255,255,0.05)",
+            color: "rgba(255,255,255,0.5)",
+            transition: "all 250ms ease",
+          }}
+        >
+          <ArrowDownIcon size={14} />
+        </div>
+        <span
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.625rem",
+            fontWeight: 600,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase" as const,
+            color: "rgba(255,255,255,0.5)",
+          }}
+        >
+          Scroll
+        </span>
+      </a>
     </section>
   );
 }

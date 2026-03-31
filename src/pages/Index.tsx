@@ -5,7 +5,7 @@ import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
-import Projects from "@/components/sections/Projects";
+import Projects from "@/components/Projects";
 import Skills from "@/components/sections/Skills";
 import Achievements from "@/components/sections/Achievements";
 import CoreCompetencies from "@/components/sections/CoreCompetencies";
@@ -170,9 +170,9 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-[#0a0a0f] text-gray-900 dark:text-white overflow-x-hidden selection:bg-indigo-500/30 transition-colors duration-500">
       <Helmet>
-        <title>Aditya - Professional Portfolio</title>
+        <title>Aditya | Product & Engineering</title>
         <meta name="description" content="Aditya's professional portfolio showcasing skills, experience, projects and more. Bridging creativity and technology to craft digital experiences that matter." />
         <meta name="keywords" content="Aditya, Portfolio, Web Development, Software Engineer, Developer, Technology, Programming" />
         <meta name="author" content="Aditya" />
@@ -192,45 +192,44 @@ const Index = () => {
 
         {/* Viewport and mobile optimization */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-        <meta name="theme-color" content="#0A0A0A" />
+        <meta name="theme-color" content="#0a0a0f" />
 
         {/* Preload critical resources */}
         <link rel="preconnect" href="https://applesocial.s3.amazonaws.com" />
       </Helmet>
 
       <Header />
-      <main>
+      <main className="relative z-10">
         <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Achievements />
-        <CoreCompetencies />
-        <ProfessionalProfile />
-        <WhatIBringSection />
-        <ProfessionalInterests />
-        <Education />
-        <LetsConnect />
-        <Contact />
+        <div className="relative">
+          <About />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Achievements />
+          <CoreCompetencies />
+          <ProfessionalProfile />
+          <WhatIBringSection />
+          <ProfessionalInterests />
+          <Education />
+          <LetsConnect />
+          <Contact />
+        </div>
       </main>
       <Footer />
 
-      {/* Custom cursor effect (visible only on desktop) */}
+      {/* Global Glow Effect */}
       <div
-        ref={cursorRef}
-        className="hidden md:block fixed w-6 h-6 rounded-full pointer-events-none mix-blend-screen z-50 opacity-0 md:opacity-30"
+        className="fixed pointer-events-none z-0 opacity-20 dark:opacity-30 blur-[120px] transition-all duration-700 md:block hidden"
         style={{
-          background: 'radial-gradient(circle, rgba(0, 119, 255, 0.8) 0%, rgba(0, 119, 255, 0) 70%)',
-          transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)`,
-          transition: 'transform 0.1s ease-out, opacity 0.3s ease',
-          filter: 'blur(2px)',
-          width: '150px',
-          height: '150px',
-          marginLeft: '-75px',
-          marginTop: '-75px'
+          left: `${cursorPosition.x}px`,
+          top: `${cursorPosition.y}px`,
+          width: '400px',
+          height: '400px',
+          background: 'radial-gradient(circle, #6366f1 0%, transparent 70%)',
+          transform: 'translate(-50%, -50%)',
         }}
-      ></div>
+      />
     </div>
   );
 };

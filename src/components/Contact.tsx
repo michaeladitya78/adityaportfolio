@@ -69,7 +69,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" ref={ref} className="section-container bg-darker-gradient relative">
+    <section id="contact" ref={ref} className="section-container section-alt relative">
       {/* Background elements */}
       <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-10"></div>
       <div className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/5 rounded-full filter blur-3xl"></div>
@@ -77,8 +77,8 @@ export default function Contact() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading
-          title="🤝 Let's Connect"
-          subtitle="I'm actively seeking opportunities where I can leverage my unique combination of product management, software engineering, and AI/ML skills to build impactful products. Whether you're looking for a Product Manager who can code, a Software Engineer who understands business, or an AI Developer who can strategize, let's discuss how I can contribute to your team's success."
+          title="Let's Connect"
+          subtitle="Open to full-time roles, freelance projects, and global collaborations."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
@@ -88,12 +88,9 @@ export default function Contact() {
           >
             <div className="glass-card p-6 space-y-6">
               <div>
-                <h3 className="text-xl font-semibold mb-3">Let's Connect</h3>
+                <h3 className="text-xl font-semibold mb-3">How I Can Help You</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
-                  I'm actively seeking opportunities where I can leverage my unique combination of product management,
-                  software engineering, and AI/ML skills to build impactful products. Whether you're looking for a Product Manager
-                  who can code, a Software Engineer who understands business, or an AI Developer who can strategize,
-                  let's discuss how I can contribute to your team's success.
+                  Whether you need a PM who codes, an engineer who thinks in products, or an AI developer who can strategize — let's find where I fit your team best.
                 </p>
               </div>
 
@@ -214,7 +211,7 @@ export default function Contact() {
 
                 <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm text-muted-foreground flex items-center gap-2">
-                    <MessageSquare className="h-4 w-4 text-accent" />
+                    <MessageSquare className="h-4 w-4" style={{ color: 'hsl(var(--accent))' }} />
                     <span>Subject</span>
                   </label>
                   <Input
@@ -246,7 +243,11 @@ export default function Contact() {
 
                 <Button
                   type="submit"
-                  className="w-full sm:w-auto bg-accent hover:bg-accent-600 text-white"
+                  className="w-full sm:w-auto font-body font-semibold"
+                  style={{
+                    backgroundColor: 'hsl(var(--accent))',
+                    color: 'hsl(var(--accent-foreground))',
+                  }}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

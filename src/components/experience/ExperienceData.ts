@@ -29,6 +29,7 @@ export const experiences: Experience[] = [
       "Spearheaded international sales operations and team management across remote distributed teams"
     ],
     technologies: ["Product Management", "Sales Operations", "International Sales", "Team Leadership", "Public Relations"],
+    companyLink: "https://www.singhmoversandpackers.com/",
     impact: "Successfully launched product features supporting logistics operations, coordinating across multiple time zones and stakeholder groups"
   },
   {
@@ -46,6 +47,7 @@ export const experiences: Experience[] = [
       "Managed Oracle Database integration and optimization for product features"
     ],
     technologies: ["Product Operations", "Software Product Management", "Wireframing", "Oracle Database", "Agile Methodologies"],
+    companyLink: "https://www.linkedin.com/company/mangiee/",
     impact: "Delivered user-centric product features that enhanced platform usability and user engagement"
   },
   {
@@ -63,6 +65,7 @@ export const experiences: Experience[] = [
       "Managed stakeholder communications and product roadmap presentations"
     ],
     technologies: ["Product Strategy", "Roadmap Planning", "Cross-functional Collaboration", "User Research", "Data Analytics"],
+    companyLink: "https://www.zendenrents.com",
     impact: "Successfully launched multiple product iterations based on user feedback and market research"
   },
   {
@@ -79,7 +82,7 @@ export const experiences: Experience[] = [
       "Implemented SEO best practices to improve content discoverability and organic reach"
     ],
     technologies: ["SEO", "Content Creation", "WordPress", "Technical Writing", "Content Design", "Google Docs"],
-    companyLink: "https://www.linkedin.com/school/kalvium/posts/?feedView=all",
+    companyLink: "https://kalvium.com/",
     impact: "Produced high-quality educational content that increased platform engagement and organic traffic"
   },
   {
@@ -113,7 +116,7 @@ export const experiences: Experience[] = [
       "Managed web content creation and optimization for improved search rankings"
     ],
     technologies: ["SEO Copywriting", "Content Strategy", "Web Content Writing", "Search Engine Optimization"],
-    companyLink: "https://www.linkedin.com/company/more-tasks/posts/?feedView=all",
+    companyLink: "https://moretasks.com/",
     impact: "Delivered high-quality content that improved website SEO performance and user engagement"
   },
   {
@@ -132,6 +135,7 @@ export const experiences: Experience[] = [
     hideLearnMore: true
   }
 ];
+
 
 // College clubs and responsibilities data
 export interface CollegeClub {

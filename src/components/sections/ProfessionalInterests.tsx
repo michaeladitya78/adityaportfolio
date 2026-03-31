@@ -33,38 +33,46 @@ export default function ProfessionalInterests() {
     ];
 
     return (
-        <section id="professional-interests" ref={ref} className="section-container py-16 md:py-24 relative">
+        <section id="professional-interests" ref={ref} className="section-container py-24 relative overflow-hidden bg-gray-50 dark:bg-[#0a0a0f] transition-colors duration-300">
             {/* Background elements */}
-            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
-            <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl animate-float-slow"></div>
-            <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-tech-600/5 rounded-full filter blur-3xl animate-float-slow" style={{ animationDelay: '1.5s' }}></div>
+            <div className="absolute inset-0 opacity-5 dark:opacity-5 pointer-events-none" style={{
+                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+                backgroundSize: "40px 40px",
+            }} />
+            <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#6366f1]/10 rounded-full filter blur-[100px] animate-pulse pointer-events-none"></div>
+            <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#06b6d4]/10 rounded-full filter blur-[100px] animate-pulse pointer-events-none" style={{ animationDelay: '1.5s' }}></div>
 
             <div className="max-w-6xl mx-auto px-4 relative z-10">
                 <SectionHeading
-                    title="📊 Professional Interests"
+                    title="Professional Interests"
                     subtitle="Areas of passion and continuous exploration"
                 />
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
                     {interests.map((interest, idx) => {
                         const Icon = interest.icon;
+                        const [fromColor] = interest.gradient.split(' ');
+                        const colorHex = fromColor.includes('purple') ? '#a855f7' : fromColor.includes('blue') ? '#3b82f6' : fromColor.includes('green') ? '#10b981' : fromColor.includes('yellow') ? '#eab308' : fromColor.includes('indigo') ? '#6366f1' : fromColor.includes('red') ? '#ef4444' : fromColor.includes('orange') ? '#f97316' : '#14b8a6';
+
                         return (
                             <Card
                                 key={interest.title}
-                                className={`glass-card ${deviceType === 'desktop' ? 'group hover:scale-105' : ''} hover:border-accent/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+                                className={`glass-card group relative overflow-hidden border border-gray-200 dark:border-white/10 bg-white dark:bg-[#111116] transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                                     }`}
                                 style={{ transitionDelay: `${idx * 75}ms` }}
                             >
-                                <CardContent className="p-5 flex flex-col items-center text-center">
-                                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${interest.gradient} p-0.5 mb-4 ${deviceType === 'desktop' ? 'group-hover:scale-110 group-hover:rotate-6' : ''} transition-all duration-300`}>
-                                        <div className="w-full h-full rounded-xl bg-white dark:bg-black/90 flex items-center justify-center">
-                                            <Icon className="text-gray-900 dark:text-white h-6 w-6" />
+                                <CardContent className="p-8 flex flex-col items-center text-center">
+                                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${interest.gradient} p-[1px] mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-indigo-500/10`}>
+                                        <div className="w-full h-full rounded-2xl bg-white dark:bg-[#0f0f14] flex items-center justify-center">
+                                            <Icon className="h-7 w-7" style={{ color: colorHex }} />
                                         </div>
                                     </div>
-                                    <h3 className="text-sm md:text-base font-semibold font-display leading-tight">
+                                    <h3 className="text-sm md:text-base font-bold font-display leading-snug text-gray-900 dark:text-white group-hover:text-[#6366f1] transition-colors">
                                         {interest.title}
                                     </h3>
                                 </CardContent>
+                                {/* Bottom accent bar */}
+                                <div className={`absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r ${interest.gradient}`}></div>
                             </Card>
                         );
                     })}

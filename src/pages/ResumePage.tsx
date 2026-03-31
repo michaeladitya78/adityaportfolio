@@ -1,14 +1,32 @@
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import ResumeHero from "@/components/resume/ResumeHero";
-import ExperienceTimeline from "@/components/resume/ExperienceTimeline";
-import SkillsBreakdown from "@/components/resume/SkillsBreakdown";
-import EducationSection from "@/components/resume/EducationSection";
+import Experience from "@/components/sections/Experience";
+import Skills from "@/components/sections/Skills";
+import Achievements from "@/components/sections/Achievements";
+import Education from "@/components/sections/Education";
 
 const ResumePage = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.hash) {
+            const id = location.hash.substring(1);
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, [location]);
+
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
+        <div className="min-h-screen bg-white dark:bg-[#0a0a0f]">
             <Helmet>
                 <title>Resume - Aditya | Professional Experience & Skills</title>
                 <meta name="description" content="View my professional experience, skills, education, and download my resume." />
@@ -16,11 +34,11 @@ const ResumePage = () => {
 
             <Header />
 
-            <main>
-                <ResumeHero />
-                <ExperienceTimeline />
-                <SkillsBreakdown />
-                <EducationSection />
+            <main className="pt-20">
+                <Experience />
+                <Skills />
+                <Achievements />
+                <Education />
             </main>
 
             <Footer />

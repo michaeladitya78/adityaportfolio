@@ -1,185 +1,358 @@
-@import "./theme.css";
+/* ============================================================
+   APPLE-INSPIRED ANIMATIONS — animations.css
+   Phase 5: Scroll Motion Layer + Micro-interactions
+   ============================================================ */
 
-/* ====================
-   ANIMATION KEYFRAMES
-   ==================== */
+/* ══════════════════════════════════════════════
+   KEYFRAMES — Cinematic Apple-style
+   ══════════════════════════════════════════════ */
 
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
+/* Hero cinematic entrance — scale from 105% + fade */
+@keyframes apple-hero-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04) translateY(12px);
+    filter: blur(4px);
   }
-
-  50% {
-    transform: translateY(-10px);
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
   }
 }
 
-@keyframes fade-up {
+/* Scroll-triggered fade-up (Apple's primary reveal) */
+@keyframes apple-fade-up {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(28px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes fade-in {
+/* Fade-in only (for backgrounds/overlays) */
+@keyframes apple-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Slide in from left */
+@keyframes apple-slide-left {
   from {
     opacity: 0;
+    transform: translateX(-32px);
   }
-
   to {
     opacity: 1;
+    transform: translateX(0);
   }
 }
 
-@keyframes letter-reveal {
+/* Slide in from right */
+@keyframes apple-slide-right {
   from {
     opacity: 0;
-    transform: translateY(20px) rotateX(-90deg);
+    transform: translateX(32px);
   }
-
   to {
     opacity: 1;
-    transform: translateY(0) rotateX(0);
+    transform: translateX(0);
   }
 }
 
-@keyframes pulse-subtle {
-
-  0%,
-  100% {
-    opacity: 0.3;
+/* Scale pop — for icons on scroll entry */
+@keyframes apple-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
   }
-
-  50% {
-    opacity: 0.6;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
+/* Skill bar fill */
+@keyframes bar-fill {
+  from { width: 0%; }
+  to   { width: var(--pct, 100%); }
+}
+
+/* Shimmer sweep on bars */
+@keyframes bar-shimmer {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(250%); }
+}
+
+/* Number counter — visual only (pair with JS) */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtle pulse for availability dot */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.85); }
+}
+
+/* Icon hover rotate (e.g. arrow) */
+@keyframes icon-nudge-right {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Path progress for experience timeline */
 @keyframes path-progress {
-  0% {
-    width: 0;
-  }
-
-  100% {
-    width: var(--width, 100%);
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-@keyframes path-glow {
-
-  0%,
-  100% {
-    filter: drop-shadow(0 0 2px rgba(0, 119, 255, 0.5));
-  }
-
-  50% {
-    filter: drop-shadow(0 0 5px rgba(0, 119, 255, 0.8));
-  }
+/* Glow pulse for timeline dots */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--accent) / 0.4); }
+  50%       { box-shadow: 0 0 0 6px hsl(var(--accent) / 0); }
 }
 
-@keyframes skill-pop {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.9);
-  }
-
-  70% {
-    opacity: 1;
-    transform: translateY(-5px) scale(1.03);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+/* Float (subtle vertical oscillation) */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
 }
 
-/* ====================
-   ANIMATION CLASSES
-   ==================== */
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL SYSTEM
+   Apple-style: elements start hidden, JS adds
+   .is-visible to trigger animation
+   ══════════════════════════════════════════════ */
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+/* Base state — hidden before scroll */
+.apple-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity var(--dur-slower, 700ms) var(--ease-decelerate, cubic-bezier(0.0, 0.0, 0.2, 1)),
+    transform var(--dur-slower, 700ms) var(--ease-decelerate, cubic-bezier(0.0, 0.0, 0.2, 1));
+  will-change: opacity, transform;
 }
 
-.animate-fade-up {
-  animation: fade-up 0.6s ease-out;
+.apple-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.animate-fade-in {
-  animation: fade-in 0.5s ease-out;
+/* Stagger children — parent gets .apple-stagger, children auto-delay */
+.apple-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--dur-slow, 500ms) var(--ease-decelerate),
+    transform var(--dur-slow, 500ms) var(--ease-decelerate);
+  will-change: opacity, transform;
 }
 
-.animate-letter-reveal {
-  animation: letter-reveal 0.5s ease-out;
+.apple-stagger.is-visible > *:nth-child(1)  { opacity: 1; transform: none; transition-delay: 0ms; }
+.apple-stagger.is-visible > *:nth-child(2)  { opacity: 1; transform: none; transition-delay: 80ms; }
+.apple-stagger.is-visible > *:nth-child(3)  { opacity: 1; transform: none; transition-delay: 160ms; }
+.apple-stagger.is-visible > *:nth-child(4)  { opacity: 1; transform: none; transition-delay: 240ms; }
+.apple-stagger.is-visible > *:nth-child(5)  { opacity: 1; transform: none; transition-delay: 320ms; }
+.apple-stagger.is-visible > *:nth-child(6)  { opacity: 1; transform: none; transition-delay: 400ms; }
+.apple-stagger.is-visible > *:nth-child(n+7){ opacity: 1; transform: none; transition-delay: 480ms; }
+
+/* Slide-from-left variant */
+.apple-reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition:
+    opacity var(--dur-slower) var(--ease-decelerate),
+    transform var(--dur-slower) var(--ease-decelerate);
+  will-change: opacity, transform;
+}
+.apple-reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+
+/* Slide-from-right variant */
+.apple-reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition:
+    opacity var(--dur-slower) var(--ease-decelerate),
+    transform var(--dur-slower) var(--ease-decelerate);
+  will-change: opacity, transform;
+}
+.apple-reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+
+/* Scale variant */
+.apple-reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition:
+    opacity var(--dur-slower) var(--ease-decelerate),
+    transform var(--dur-slower) var(--ease-spring);
+  will-change: opacity, transform;
+}
+.apple-reveal-scale.is-visible { opacity: 1; transform: scale(1); }
+
+/* ══════════════════════════════════════════════
+   HERO ENTRANCE — Cinematic
+   ══════════════════════════════════════════════ */
+
+.apple-hero-enter {
+  animation: apple-hero-in var(--dur-slowest, 900ms) var(--ease-decelerate) both;
 }
 
-.animate-pulse-subtle {
-  animation: pulse-subtle 4s ease-in-out infinite;
+.apple-hero-enter--delay-1 { animation-delay: 100ms; }
+.apple-hero-enter--delay-2 { animation-delay: 200ms; }
+.apple-hero-enter--delay-3 { animation-delay: 350ms; }
+.apple-hero-enter--delay-4 { animation-delay: 500ms; }
+.apple-hero-enter--delay-5 { animation-delay: 650ms; }
+
+/* ══════════════════════════════════════════════
+   MICRO-INTERACTIONS
+   ══════════════════════════════════════════════ */
+
+/* Card lift — Apple-style hover */
+.apple-card {
+  transition:
+    transform var(--dur-normal, 300ms) var(--ease-spring),
+    box-shadow var(--dur-normal, 300ms) var(--ease-out),
+    border-color var(--dur-normal, 300ms) var(--ease-out);
+  will-change: transform;
 }
 
-.animate-path-progress {
-  animation: path-progress 1.5s ease-out forwards;
+.apple-card:hover {
+  transform: translateY(-4px) scale(1.005);
+  box-shadow: var(--shadow-hover);
 }
 
-.animate-path-glow {
-  animation: path-glow 2s ease-in-out infinite;
+/* Button press */
+.apple-btn {
+  transition:
+    transform var(--dur-fast, 150ms) var(--ease-out),
+    box-shadow var(--dur-fast, 150ms) var(--ease-out),
+    background var(--dur-normal, 300ms) var(--ease-out),
+    border-color var(--dur-normal, 300ms) var(--ease-out);
+  will-change: transform;
 }
 
-.animate-skill-pop {
-  animation: skill-pop 0.5s ease-out forwards;
+.apple-btn:hover  { transform: scale(1.02); }
+.apple-btn:active { transform: scale(0.97); }
+
+/* Icon arrow nudge on parent hover */
+.apple-link-arrow {
+  transition: transform var(--dur-normal) var(--ease-spring);
+}
+.group:hover .apple-link-arrow {
+  transform: translate(3px, -3px);
 }
 
-/* ====================
+/* Glassmorphism nav */
+.apple-nav-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  transition:
+    background var(--dur-normal) var(--ease-apple),
+    box-shadow var(--dur-normal) var(--ease-apple);
+}
+
+.dark .apple-nav-glass {
+  background: rgba(22, 22, 23, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Status pulse dot */
+.status-dot {
+  animation: status-pulse 2.5s ease-in-out infinite;
+}
+
+/* Glow pulse for timeline dots */
+.glow-dot {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════
+   SKILL BARS
+   ══════════════════════════════════════════════ */
+
+.skill-bar-fill {
+  animation: bar-fill 1.2s cubic-bezier(0.34, 1.06, 0.64, 1) forwards;
+  animation-delay: var(--bar-delay, 0ms);
+}
+
+.skill-bar-shimmer {
+  animation: bar-shimmer 2.2s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════
    UTILITY CLASSES
-   ==================== */
+   ══════════════════════════════════════════════ */
 
-/* Glass effect utilities */
-.glass {
-  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg;
+/* Apple glass card */
+.glass-apple {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-md);
 }
 
-.glass-dark {
-  @apply bg-black/40 backdrop-blur-md border border-white/5 shadow-lg;
+.dark .glass-apple {
+  background: rgba(30, 30, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Text gradient utilities */
-.text-gradient {
-  @apply bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent;
+/* Old aliases kept for backward compatibility */
+.glass        { @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg; }
+.glass-dark   { @apply bg-black/40 backdrop-blur-md border border-white/5 shadow-lg; }
+.glass-card   { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); }
+
+/* Gradient text */
+.text-gradient-apple {
+  background: linear-gradient(135deg, hsl(var(--accent)), hsl(250 91% 65%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.text-gradient-primary {
-  @apply bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent;
-}
-
-/* Section container utility */
+/* Section layout */
 .section-container {
-  @apply py-16 md:py-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto;
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+  padding-left: var(--section-px);
+  padding-right: var(--section-px);
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Grid pattern backgrounds */
-.bg-grid-pattern-dark {
-  background-image:
-    linear-gradient(to right, rgba(31, 31, 31, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(31, 31, 31, 0.1) 1px, transparent 1px);
+/* Apple-style eyebrow label */
+.apple-eyebrow {
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: hsl(var(--accent));
 }
 
-.bg-grid-sm {
-  background-size: 20px 20px;
-}
+/* Float animation for decorative elements */
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-spin   { animation: spin 1s linear infinite; }
+.animate-pulse-status { animation: status-pulse 2.5s ease-in-out infinite; }
 
-.bg-grid-md {
-  background-size: 40px 40px;
-}
+/* Smooth anchor scroll offset for sticky nav */
+:target { scroll-margin-top: 80px; }
 
-/* Gradient backgrounds */
-.bg-darker-gradient {
-  background: linear-gradient(to bottom, #0A0A0A, #111111);
+/* Section alt background — Apple alternates #fff / #f5f5f7 */
+.section-alt {
+  background: hsl(var(--secondary));
 }

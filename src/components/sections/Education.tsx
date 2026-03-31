@@ -34,7 +34,7 @@ export default function Education() {
           subtitle="My academic journey and notable accomplishments"
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 gap-6 mb-16">
           {educationData.map((edu, index) => (
             <EducationItem
               key={edu.id}

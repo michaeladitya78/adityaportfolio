@@ -1,14 +1,15 @@
 import { Helmet } from "react-helmet";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import AboutHero from "@/components/about/AboutHero";
-import PersonalStory from "@/components/about/PersonalStory";
-import SkillsMatrix from "@/components/about/SkillsMatrix";
-import InterestsSection from "@/components/about/InterestsSection";
+import About from "@/components/sections/About";
+import CoreCompetencies from "@/components/sections/CoreCompetencies";
+import ProfessionalProfile from "@/components/sections/ProfessionalProfile";
+import WhatIBringSection from "@/components/sections/WhatIBringSection";
+import ProfessionalInterests from "@/components/sections/ProfessionalInterests";
 
 const AboutPage = () => {
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
+        <div className="min-h-screen bg-white dark:bg-[#0a0a0f]">
             <Helmet>
                 <title>About - Aditya | Full-Stack Developer & Designer</title>
                 <meta name="description" content="Learn more about Aditya - my journey, skills, values, and what drives me to create exceptional digital experiences." />
@@ -16,11 +17,12 @@ const AboutPage = () => {
 
             <Header />
 
-            <main>
-                <AboutHero />
-                <PersonalStory />
-                <SkillsMatrix />
-                <InterestsSection />
+            <main className="pt-20">
+                <About />
+                <ProfessionalProfile />
+                <CoreCompetencies />
+                <WhatIBringSection />
+                <ProfessionalInterests />
             </main>
 
             <Footer />

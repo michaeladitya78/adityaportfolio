@@ -1,17 +1,13 @@
-
-import { ArrowDownIcon, Sparkles } from "lucide-react";
+import { ArrowDownIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 
-const passions = [
-  "Product Manager | Software Engineer",
-  "Building AI Solutions",
-  "Creating Digital Experiences",
-  "Leading Cross-functional Teams",
-  "Developing ML Models",
-  "Driving Product Strategy"
+const roles = [
+  "Product Manager",
+  "Full-Stack Engineer",
+  "AI/ML Developer",
+  "Team Leader",
 ];
 
 export default function Hero() {
@@ -21,7 +17,8 @@ export default function Hero() {
   });
 
   const [isVisible, setIsVisible] = useState(false);
-  const [currentPassion, setCurrentPassion] = useState(0);
+  const [currentRole, setCurrentRole] = useState(0);
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
     if (inView) {
@@ -29,11 +26,15 @@ export default function Hero() {
     }
   }, [inView]);
 
-  // Passion cycling effect
+  // Crossfade cycling — 3.5s interval with 0.4s fade
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentPassion((prev) => (prev + 1) % passions.length);
-    }, 2000);
+      setFade(false);
+      setTimeout(() => {
+        setCurrentRole((prev) => (prev + 1) % roles.length);
+        setFade(true);
+      }, 400);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, []);
@@ -42,82 +43,162 @@ export default function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-[85vh] flex items-center justify-center pt-16 pb-12 overflow-hidden bg-[#0A0A0A]"
+      className="relative min-h-[90vh] flex items-center justify-center pt-16 pb-16 overflow-hidden"
+      style={{ backgroundColor: "hsl(var(--background))" }}
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-dots-pattern bg-dots-sm opacity-5"></div>
-      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5"></div>
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5 pointer-events-none" />
 
-      {/* Dynamic gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] to-[#121212] opacity-90"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,#0077FF_-30%,transparent_125%),radial-gradient(circle_at_75%_75%,#0077FF_-30%,transparent_125%)]" style={{ opacity: 0.05 }}></div>
-
-      {/* Animated tech pattern elements */}
-      <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-[#0077FF]/5 rounded-full filter blur-3xl animate-float-slow"></div>
-      <div className="absolute bottom-1/4 right-1/6 w-64 h-64 bg-[#20C997]/10 rounded-full filter blur-3xl animate-float-slow" style={{ animationDelay: '1s' }}></div>
+      {/* Dynamic gradient orbs */}
+      <div
+        className="absolute top-1/4 left-1/6 w-96 h-96 rounded-full filter blur-3xl animate-float-slow pointer-events-none"
+        style={{ background: "hsl(var(--accent) / 0.06)" }}
+      />
+      <div
+        className="absolute bottom-1/4 right-1/6 w-72 h-72 rounded-full filter blur-3xl animate-float-slow pointer-events-none"
+        style={{ background: "hsl(250 91% 65% / 0.05)", animationDelay: "1.5s" }}
+      />
 
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <Badge
-            className={`bg-[#0A0A0A] text-[#0077FF] border border-[#0077FF]/30 hover:bg-[#121212] py-1.5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
-              }`}
-          >
-            <span className="font-display">{passions[currentPassion]}</span>
-          </Badge>
+        <div className="max-w-5xl mx-auto text-center">
 
-          <h1
-            className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 transition-all duration-700 font-display ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
-              }`}
-            style={{ transitionDelay: '100ms' }}
+          {/* Role chip — crossfade cycling */}
+          <div
+            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-8 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{
+              borderColor: "hsl(var(--accent) / 0.3)",
+              backgroundColor: "hsl(var(--accent) / 0.06)",
+            }}
           >
-            Hey, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0077FF] to-[#20C997]">Aditya</span>
+            <span
+              className="w-1.5 h-1.5 rounded-full animate-pulse"
+              style={{ backgroundColor: "hsl(var(--accent))" }}
+            />
+            <span
+              className="text-sm font-medium font-body"
+              style={{
+                color: "hsl(var(--accent))",
+                opacity: fade ? 1 : 0,
+                transition: "opacity 0.4s ease",
+              }}
+            >
+              {roles[currentRole]}
+            </span>
+          </div>
+
+          {/* Main headline */}
+          <h1
+            className={`font-display font-bold tracking-tight mb-6 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+            style={{
+              fontSize: "clamp(3rem, 6vw + 1rem, 5.5rem)",
+              lineHeight: "1.05",
+              transitionDelay: "100ms",
+            }}
+          >
+            <span style={{ color: "hsl(var(--foreground))" }}>Aditya Raj</span>
+            <br />
+            <span className="text-gradient">builds AI products</span>
           </h1>
 
+          {/* Concrete subline */}
           <p
-            className={`text-xl md:text-2xl text-[#F0F0F0] mb-8 max-w-3xl mx-auto transition-all duration-700 font-body ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
-              }`}
-            style={{ transitionDelay: '200ms' }}
+            className={`text-lg md:text-xl font-body mb-10 max-w-2xl mx-auto leading-relaxed transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{
+              color: "hsl(var(--muted-foreground))",
+              transitionDelay: "200ms",
+            }}
           >
-            Bridging creativity and technology to craft digital experiences that matter
+            Product Manager + Full-Stack Engineer specializing in AI/ML products.
+            NIT Patna · Open to roles globally.
           </p>
 
+          {/* CTA Buttons */}
           <div
-            className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'
-              }`}
-            style={{ transitionDelay: '300ms' }}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: "300ms" }}
           >
-            <Button size="lg" className="bg-[#0077FF] hover:bg-[#0066DD] text-white group relative overflow-hidden" asChild>
+            <Button
+              size="lg"
+              className="font-body font-semibold relative overflow-hidden group"
+              style={{
+                backgroundColor: "hsl(var(--accent))",
+                color: "hsl(var(--accent-foreground))",
+              }}
+              asChild
+            >
               <a href="#projects" className="inline-flex items-center gap-2">
-                <span className="relative z-10 font-body font-medium">View My Work</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-[#0066DD] to-[#0088FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+                <span className="relative z-10">View My Work</span>
+                <span
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+                  style={{ backgroundColor: "hsl(var(--accent-hover))" }}
+                />
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="border-[#0077FF]/30 text-[#0077FF] hover:text-white hover:bg-[#121212] group relative overflow-hidden" asChild>
-              <a href="#contact" className="inline-flex items-center gap-2">
-                <span className="relative z-10 font-body font-medium">Get In Touch</span>
-                <span className="absolute inset-0 bg-[#0077FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
-              </a>
+            <Button
+              size="lg"
+              variant="outline"
+              className="font-body font-medium transition-all duration-300"
+              style={{
+                borderColor: "hsl(var(--accent) / 0.4)",
+                color: "hsl(var(--accent))",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "hsl(var(--accent))";
+                (e.currentTarget as HTMLButtonElement).style.color = "hsl(var(--accent-foreground))";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
+                (e.currentTarget as HTMLButtonElement).style.color = "hsl(var(--accent))";
+              }}
+              asChild
+            >
+              <a href="#contact">Get In Touch</a>
             </Button>
+          </div>
+
+          {/* Social proof strip */}
+          <div
+            className={`flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-body transition-all duration-700 ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ color: "hsl(var(--muted-foreground))", transitionDelay: "400ms" }}
+          >
+            <span>5+ Client Projects</span>
+            <span aria-hidden style={{ color: "hsl(var(--border))" }}>·</span>
+            <span>AI/ML · Fullstack · PM</span>
+            <span aria-hidden style={{ color: "hsl(var(--border))" }}>·</span>
+            <span style={{ color: "hsl(var(--accent))", fontWeight: 600 }}>Available Now</span>
           </div>
         </div>
       </div>
 
+      {/* Scroll indicator */}
       <div
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        style={{ transitionDelay: '400ms' }}
+        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce transition-all duration-700 ${
+          isVisible ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ transitionDelay: "500ms" }}
       >
         <a
           href="#about"
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0A0A0A] border border-[#121212] shadow-lg hover:bg-[#121212] hover:border-[#0077FF]/50 transition-all"
+          className="flex items-center justify-center w-10 h-10 rounded-full transition-all"
+          style={{
+            backgroundColor: "hsl(var(--muted) / 0.5)",
+            border: "1px solid hsl(var(--border))",
+          }}
           aria-label="Scroll to About section"
         >
-          <ArrowDownIcon size={20} className="text-[#0077FF]" />
+          <ArrowDownIcon size={18} style={{ color: "hsl(var(--accent))" }} />
         </a>
       </div>
-
-      {/* Interactive glow effect for mouse movement */}
-      <div className="glow-effect absolute inset-0 opacity-20 pointer-events-none"></div>
     </section>
   );
 }

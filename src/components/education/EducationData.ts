@@ -32,19 +32,5 @@ export const educationData: Education[] = [
       "Statistical Simulation and Data Analysis",
       "Cryptography"
     ]
-  },
-  {
-    id: 2,
-    degree: "Senior Secondary",
-    institution: "JL College",
-    field: "Mathematics and Science",
-    period: "2020 - 2022"
-  },
-  {
-    id: 3,
-    degree: "Secondary",
-    institution: "CBSE",
-    field: "General Studies",
-    period: "Completed 2020"
   }
 ];

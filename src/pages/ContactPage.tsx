@@ -1,9 +1,7 @@
 import { Helmet } from "react-helmet";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import ContactHero from "@/components/contact/ContactHero";
-import ContactForm from "@/components/contact/ContactForm";
-import ContactInfo from "@/components/contact/ContactInfo";
+import Contact from "@/components/sections/Contact";
 
 const ContactPage = () => {
     return (
@@ -15,16 +13,8 @@ const ContactPage = () => {
 
             <Header />
 
-            <main>
-                <ContactHero />
-                <section className="py-16 md:py-24">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                            <ContactForm />
-                            <ContactInfo />
-                        </div>
-                    </div>
-                </section>
+            <main className="pt-20">
+                <Contact />
             </main>
 
             <Footer />

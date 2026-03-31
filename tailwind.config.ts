@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 
 export default {
 	darkMode: ["class"],
@@ -21,14 +22,14 @@ export default {
 		extend: {
 			// REFINED MODERNISM TYPOGRAPHY SYSTEM
 			fontFamily: {
-				// Headings: SF Pro Display (Apple) → Inter (cross-platform)
-				display: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
-				// Body: SF Pro Text (Apple) → Inter (cross-platform)
-				body: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
+				// Headings: Outfit (loaded first, takes priority)
+				display: ['Outfit', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+				// Body: Plus Jakarta Sans (loaded first)
+				body: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
 				// Serif for editorial headings
 				serif: ['Instrument Serif', 'Georgia', 'serif'],
 				// System font stack (default sans)
-				sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+				sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
 				// Code
 				mono: ['JetBrains Mono', 'SF Mono', 'ui-monospace', 'Consolas', 'monospace'],
 			},
@@ -131,7 +132,6 @@ export default {
 
 			// PROFESSIONAL ANIMATIONS
 			keyframes: {
-				// Shadcn defaults
 				'accordion-down': {
 					from: { height: '0' },
 					to: { height: 'var(--radix-accordion-content-height)' }
@@ -140,8 +140,6 @@ export default {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' }
 				},
-
-				// Fade animations
 				'fade-in': {
 					'0%': { opacity: '0' },
 					'100%': { opacity: '1' }
@@ -154,78 +152,35 @@ export default {
 					'0%': { opacity: '0', transform: 'translateY(-20px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' }
 				},
-
-				// Slide animations
-				'slide-up': {
-					'0%': { opacity: '0', transform: 'translateY(30px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
+				'marquee-diagonal': {
+					'0%': { transform: 'translateY(0)' },
+					'100%': { transform: 'translateY(-50%)' }
 				},
-				'slide-up-bounce': {
-					'0%': { opacity: '0', transform: 'translateY(30px)' },
-					'60%': { opacity: '1', transform: 'translateY(-5px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
-				},
-
-				// Scale animations
-				'scale-in': {
-					'0%': { opacity: '0', transform: 'scale(0.9)' },
-					'100%': { opacity: '1', transform: 'scale(1)' }
-				},
-
-				// Gradient animation
-				'gradient': {
-					'0%, 100%': { backgroundPosition: '0% 50%' },
-					'50%': { backgroundPosition: '100% 50%' }
-				},
-
-				// Letter reveal
-				'letter-reveal': {
-					'0%': { opacity: '0', transform: 'translateY(50px) scale(0.8)' },
-					'100%': { opacity: '1', transform: 'translateY(0) scale(1)' }
-				},
-
-				// Float animation
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
 				},
-
-				// Pulse glow
-				'pulse-glow': {
-					'0%, 100%': { boxShadow: '0 0 5px rgba(245, 158, 11, 0.2)' },
-					'50%': { boxShadow: '0 0 20px rgba(245, 158, 11, 0.4)' }
-				},
-
-				// Loading shimmer
 				'shimmer': {
 					'0%': { backgroundPosition: '200% 0' },
 					'100%': { backgroundPosition: '-200% 0' }
 				},
 			},
-
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-in-out',
 				'fade-up': 'fade-up 0.7s ease-out',
 				'fade-down': 'fade-down 0.7s ease-out',
-				'slide-up': 'slide-up 0.5s ease-out',
-				'slide-up-bounce': 'slide-up-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
-				'scale-in': 'scale-in 0.3s ease-out',
-				'gradient': 'gradient 15s ease infinite',
-				'letter-reveal': 'letter-reveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
 				'float': 'float 5s ease-in-out infinite',
-				'pulse-glow': 'pulse-glow 3s infinite',
+				'float-slow': 'float 8s ease-in-out infinite',
 				'shimmer': 'shimmer 2s linear infinite',
+				'marquee-diagonal': 'marquee-diagonal 30s linear infinite',
 			},
-
-			// Background patterns
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'gradient-shimmer': 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
 			},
-
 			backgroundSize: {
 				'shimmer': '200% 100%',
 			},
@@ -233,6 +188,6 @@ export default {
 	},
 	plugins: [
 		tailwindcssAnimate,
-		require('@tailwindcss/typography'),
+		typography,
 	],
 } satisfies Config;

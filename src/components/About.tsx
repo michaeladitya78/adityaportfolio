@@ -94,7 +94,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" ref={ref} className="section-container py-24 bg-black relative">
+    <section id="about" ref={ref} className="section-container py-24 bg-background relative">
       <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-5"></div>
       <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full filter blur-3xl animate-float-slow"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-tech-600/5 rounded-full filter blur-3xl animate-float-slow" style={{ animationDelay: '2s' }}></div>
@@ -129,8 +129,8 @@ export default function About() {
         {/* Core Competencies */}
         <div className="mt-20">
           <div className="flex items-center justify-center gap-3 mb-10">
-            <Sparkles className="h-6 w-6 text-accent" />
-            <h3 className="text-3xl font-bold text-white">💡 Core Competencies</h3>
+            <Sparkles className="h-6 w-6" style={{ color: 'hsl(var(--accent))' }} />
+            <h3 className="text-3xl font-bold text-foreground">Core Competencies</h3>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -169,8 +169,8 @@ export default function About() {
             <Card className="glass-card bg-zinc-900/40 border-zinc-800 h-full">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <Globe className="h-5 w-5 text-accent" />
-                  📫 Professional Profile
+                  <Globe className="h-5 w-5" style={{ color: 'hsl(var(--accent))' }} />
+                  Professional Profile
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-5">
@@ -246,13 +246,13 @@ export default function About() {
             <Card className="glass-card bg-zinc-900/40 border-zinc-800 h-full">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <Target className="h-5 w-5 text-accent" />
-                  🎯 What I Bring to Your Team
+                  <Target className="h-5 w-5" style={{ color: 'hsl(var(--accent))' }} />
+                  What I Bring to Your Team
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {valueProps.map((prop, idx) => (
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {valueProps.slice(0, 3).map((prop, idx) => (
                     <div
                       key={idx}
                       className="flex items-start gap-3 p-4 rounded-lg bg-accent/5 border border-accent/10 hover:border-accent/30 transition-all group"
@@ -272,8 +272,8 @@ export default function About() {
         {/* Professional Interests */}
         <div className={`mt-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex items-center justify-center gap-3 mb-8">
-            <Brain className="h-6 w-6 text-accent" />
-            <h3 className="text-2xl font-bold text-white">📊 Professional Interests</h3>
+            <Brain className="h-6 w-6" style={{ color: 'hsl(var(--accent))' }} />
+            <h3 className="text-2xl font-bold text-foreground">Professional Interests</h3>
           </div>
           <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
             {interests.map((interest, i) => (

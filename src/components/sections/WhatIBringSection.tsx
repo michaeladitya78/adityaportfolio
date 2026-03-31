@@ -63,36 +63,45 @@ export default function WhatIBringSection() {
     ];
 
     return (
-        <section id="what-i-bring" ref={ref} className="section-container py-16 md:py-24 relative overflow-hidden">
+        <section id="what-i-bring" ref={ref} className="section-container py-24 relative overflow-hidden bg-white dark:bg-[#0a0a0f] transition-colors duration-300">
             {/* Background elements */}
-            <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
-            <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl animate-pulse-subtle"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-tech-600/5 rounded-full filter blur-3xl animate-pulse-subtle" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute inset-0 opacity-5 dark:opacity-5 pointer-events-none" style={{
+                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+                backgroundSize: "40px 40px",
+            }} />
+            <div className="absolute top-0 left-0 w-96 h-96 bg-[#6366f1]/5 rounded-full filter blur-[100px] animate-pulse pointer-events-none"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#06b6d4]/5 rounded-full filter blur-[100px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }}></div>
 
             <div className="max-w-6xl mx-auto px-4 relative z-10">
                 <SectionHeading
-                    title="🎯 What I Bring to Your Team"
+                    title="What I Bring"
                     subtitle="Unique value proposition combining product, technical, and business skills"
                 />
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
                     {valueProps.map((prop, idx) => (
                         <Card
                             key={prop.title}
-                            className={`glass-card group hover:border-accent/20 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+                            className={`glass-card group relative overflow-hidden border border-gray-200 dark:border-white/10 bg-white dark:bg-[#111116] transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                                 }`}
                             style={{ transitionDelay: `${idx * 75}ms` }}
                         >
-                            <CardContent className="p-5">
-                                <div className="flex items-start gap-3 mb-3">
-                                    <div className={`w-6 h-6 rounded-md bg-gradient-to-br ${prop.gradient} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform mt-0.5`}>
-                                        <CheckCircle2 className="h-4 w-4 text-white" />
+                            <CardContent className="p-6">
+                                <div className="flex flex-col gap-4">
+                                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${prop.gradient} p-[1px] flex-shrink-0 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-indigo-500/10`}>
+                                        <div className="w-full h-full rounded-2xl bg-white dark:bg-[#0f0f14] flex items-center justify-center">
+                                            <CheckCircle2 className="h-6 w-6 text-[#6366f1]" />
+                                        </div>
                                     </div>
-                                    <h3 className="text-base md:text-lg font-bold font-display leading-tight">{prop.title}</h3>
+                                    <div>
+                                        <h3 className="text-lg font-bold font-display text-gray-900 dark:text-white leading-tight mb-2 group-hover:text-[#6366f1] transition-colors">{prop.title}</h3>
+                                        <p className="text-sm text-gray-500 dark:text-white/40 leading-relaxed font-body">
+                                            {prop.description}
+                                        </p>
+                                    </div>
                                 </div>
-                                <p className="text-sm text-muted-foreground leading-relaxed font-body pl-9">
-                                    {prop.description}
-                                </p>
+                                {/* Subtle line accent */}
+                                <div className={`absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r ${prop.gradient}`}></div>
                             </CardContent>
                         </Card>
                     ))}

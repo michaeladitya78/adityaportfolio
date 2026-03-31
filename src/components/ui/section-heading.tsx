@@ -15,10 +15,12 @@ export function SectionHeading({
   subtitleClassName,
 }: SectionHeadingProps) {
   return (
-    <div className={cn("space-y-2 mb-10", className)}>
-      <h2 className="text-3xl sm:text-4xl font-bold text-gradient">{title}</h2>
+    <div className={cn("space-y-3 mb-12", className)}>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight">
+        <span className="text-gradient">{title}</span>
+      </h2>
       {subtitle && (
-        <p className={cn("text-muted-foreground text-lg", subtitleClassName)}>
+        <p className={cn("text-gray-500 dark:text-gray-400 text-lg md:text-xl font-body max-w-2xl", subtitleClassName)}>
           {subtitle}
         </p>
       )}

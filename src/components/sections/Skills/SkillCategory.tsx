@@ -19,7 +19,7 @@ export const SkillCategory = ({
 
   return (
     <div className="mb-8 last:mb-0">
-      <h3 className="text-2xl font-semibold mb-4 text-foreground font-display">
+      <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-6 text-indigo-500/80 font-body">
         {title}
       </h3>
 
@@ -44,22 +44,22 @@ export const SkillCategory = ({
                 {typeof skill.icon === 'string' ? (
                   skill.icon.startsWith('<svg') ? (
                     <div
-                      className={`w-12 h-12 p-2 flex items-center justify-center rounded-lg mb-2 transition-all duration-300 ${isHovered ? 'bg-[#0077FF]/10' : ''
-                        }`}
+                      className={`w-14 h-14 p-2.5 flex items-center justify-center rounded-2xl mb-2 transition-all duration-500 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 group-hover:scale-110 group-hover:rotate-3 group-hover:border-indigo-500/30 group-hover:bg-indigo-500/5 animate-float-slow`}
+                      style={{ animationDelay: `${idx * 0.2}s` }}
                       dangerouslySetInnerHTML={{ __html: skill.icon }}
                     />
                   ) : (
                     <img
                       src={skill.icon}
                       alt={skill.name}
-                      className={`w-12 h-12 p-2 object-contain flex items-center justify-center rounded-lg mb-2 transition-all duration-300 ${isHovered ? 'bg-[#0077FF]/10' : ''
-                        }`}
+                      className={`w-14 h-14 p-3 object-contain flex items-center justify-center rounded-2xl mb-2 transition-all duration-500 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 group-hover:scale-110 group-hover:-rotate-3 group-hover:border-indigo-500/30 group-hover:bg-indigo-500/5 animate-float-slow`}
+                      style={{ animationDelay: `${idx * 0.2}s` }}
                     />
                   )
                 ) : (
                   <div
-                    className={`w-12 h-12 p-2 flex items-center justify-center rounded-lg mb-2 text-[#0077FF] transition-all duration-300 ${isHovered ? 'text-white bg-[#0077FF]' : 'bg-[#0077FF]/10'
-                      }`}
+                    className={`w-14 h-14 p-2.5 flex items-center justify-center rounded-2xl mb-2 text-indigo-500 transition-all duration-500 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 group-hover:scale-110 group-hover:rotate-3 group-hover:border-indigo-500/30 group-hover:bg-indigo-500/5 animate-float-slow`}
+                    style={{ animationDelay: `${idx * 0.2}s` }}
                   >
                     {skill.icon}
                   </div>

@@ -35,12 +35,6 @@ export default function Experience() {
           const index = parseInt(entry.target.getAttribute('data-index') || '-1');
           setActiveIndex(index);
 
-          // Animate the path progress
-          const pathProgress = entry.target.querySelector('.path-progress') as HTMLElement;
-          if (pathProgress) {
-            pathProgress.style.animation = 'path-progress 1.5s ease-out forwards';
-          }
-
           // Add glow to the path dot
           const pathDot = entry.target.querySelector('.path-dot') as HTMLElement;
           if (pathDot) {
@@ -68,12 +62,6 @@ export default function Experience() {
           const index = parseInt(entry.target.getAttribute('data-index') || '-1');
           setActiveClubIndex(index);
 
-          // Animate the path progress
-          const pathProgress = entry.target.querySelector('.path-progress') as HTMLElement;
-          if (pathProgress) {
-            pathProgress.style.animation = 'path-progress 1.5s ease-out forwards';
-          }
-
           // Add glow to the path dot
           const pathDot = entry.target.querySelector('.path-dot') as HTMLElement;
           if (pathDot) {
@@ -92,13 +80,16 @@ export default function Experience() {
   }, [isVisible]);
 
   return (
-    <section id="experience" ref={ref} className="section-container py-24 relative">
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-grid-pattern-dark bg-grid-sm opacity-[0.03] dark:opacity-5"></div>
-      <div className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/5 rounded-full filter blur-3xl"></div>
-      <div className="absolute bottom-1/3 -right-32 w-64 h-64 bg-primary/5 rounded-full filter blur-3xl"></div>
+    <section id="experience" ref={ref} className="section-container py-24 relative overflow-hidden transition-colors duration-300">
+      {/* Background decorations matching the new aesthetic */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-5 pointer-events-none" style={{
+        backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+        backgroundSize: "40px 40px",
+      }} />
+      <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full blur-[100px] opacity-20 dark:opacity-10 pointer-events-none" style={{ background: "#6366f1" }} />
+      <div className="absolute bottom-1/4 -left-32 w-96 h-96 rounded-full blur-[100px] opacity-20 dark:opacity-10 pointer-events-none" style={{ background: "#06b6d4" }} />
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-4xl mx-auto relative z-10 transition-all duration-1000 text-gray-900 dark:text-white">
         <SectionHeading
           title="Professional Experience"
           subtitle="My journey creating content and building digital experiences"
@@ -106,7 +97,7 @@ export default function Experience() {
 
         <div className="relative mt-16" ref={timelineRef}>
           {/* Main timeline path */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gray-200 dark:bg-[#1F1F1F]"></div>
+          <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-gray-200 dark:bg-white/5"></div>
 
           {experiences.map((exp, index) => (
             <ExperienceItem
@@ -120,7 +111,7 @@ export default function Experience() {
         </div>
 
         {/* College Clubs and Responsibilities Section */}
-        <div className="mt-24">
+        <div className="mt-24" id="college-clubs">
           <SectionHeading
             title="College Clubs & Responsibilities"
             subtitle="Extracurricular activities enhancing my skills and experience"
@@ -129,7 +120,7 @@ export default function Experience() {
 
           <div className="relative mt-16" ref={clubsTimelineRef}>
             {/* Main timeline path */}
-            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gray-200 dark:bg-[#1F1F1F]"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-gray-200 dark:bg-white/5"></div>
 
             {collegeClubs.map((club, index) => (
               <CollegeClubItem

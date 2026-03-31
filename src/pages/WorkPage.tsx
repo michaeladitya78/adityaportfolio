@@ -1,26 +1,20 @@
 import { Helmet } from "react-helmet";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import ProjectsHero from "@/components/work/ProjectsHero";
-import ProjectGrid from "@/components/work/ProjectGrid";
+import Projects from "@/components/Projects";
 
 const WorkPage = () => {
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
+        <div className="min-h-screen bg-white dark:bg-[#0a0a0f] text-gray-900 dark:text-white transition-colors duration-500">
             <Helmet>
-                <title>Work - Aditya | Project Portfolio</title>
+                <title>Work | Aditya</title>
                 <meta name="description" content="Explore my portfolio of web development and design projects. Filter by category, technology, and year." />
             </Helmet>
 
             <Header />
 
-            <main>
-                <ProjectsHero />
-                <section className="py-16 md:py-24">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <ProjectGrid />
-                    </div>
-                </section>
+            <main className="pt-20">
+                <Projects />
             </main>
 
             <Footer />

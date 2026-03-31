@@ -2,11 +2,12 @@ export interface Project {
     id: number;
     slug: string;
     title: string;
-    category: 'web' | 'mobile' | 'design' | 'other';
+    subtitle: string;
+    category: 'fullstack' | 'ai' | 'systems' | 'web';
     description: string;
     excerpt: string;
-    image: string;
-    images: string[];
+    accentColor: string;
+    initials: string;
     tech: string[];
     year: number;
     featured: boolean;
@@ -15,7 +16,7 @@ export interface Project {
     role?: string;
     challenge?: string;
     solution?: string;
-    results?: string[];
+    highlights?: string[];
     liveUrl?: string;
     githubUrl?: string;
 }
@@ -23,178 +24,178 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: 1,
-        slug: 'ecommerce-platform',
-        title: 'E-Commerce Platform',
-        category: 'web',
-        description: 'A full-featured e-commerce platform with modern UI/UX and robust backend architecture.',
-        excerpt: 'Modern e-commerce solution with advanced filtering, cart management, and payment integration.',
-        image: '/projects/ecommerce-hero.jpg',
-        images: [
-            '/projects/ecommerce-1.jpg',
-            '/projects/ecommerce-2.jpg',
-            '/projects/ecommerce-3.jpg',
-        ],
-        tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB', 'Stripe'],
-        year: 2024,
+        slug: 'scan-verify-swift',
+        title: 'ScanVerify',
+        subtitle: 'Customs Verification App',
+        category: 'ai',
+        description: 'A full-stack customs document verification platform built as an MVP preview for a client in the import/export sector. Leverages Firebase for real-time data, cloud storage for document handling, and Google GenKit AI for intelligent document parsing and validation — cutting manual verification time significantly.',
+        excerpt: 'AI-powered customs document verification platform with GenKit AI and Firebase.',
+        accentColor: '#6366f1',
+        initials: 'SV',
+        tech: ['React', 'TypeScript', 'Firebase', 'GenKit AI', 'Vite', 'Tailwind CSS', 'shadcn/ui'],
+        year: 2025,
         featured: true,
-        client: 'Tech Startup Inc.',
-        timeline: '3 months',
-        role: 'Full-Stack Developer & UI Designer',
-        challenge: 'Building a scalable e-commerce platform that handles high traffic while maintaining excellent performance and user experience.',
-        solution: 'Implemented server-side rendering with Next.js, optimized database queries, and created a component-based architecture for maintainability.',
-        results: [
-            '40% increase in conversion rate',
-            'Page load time reduced to under 2 seconds',
-            '99.9% uptime achieved',
-            'Successfully handles 10k+ daily users'
+        client: 'Import/Export Sector Client',
+        timeline: '3 weeks (MVP)',
+        role: 'Full-Stack Developer',
+        challenge: 'The client needed a fast, reliable way to validate customs documents at scale, replacing a slow and error-prone manual process.',
+        solution: 'Built a Firebase-backed platform where documents are uploaded, parsed by Google GenKit AI, and flagged for issues in real time. Auth, Firestore, and Storage were integrated for a complete end-to-end solution.',
+        highlights: [
+            'Google GenKit AI integration for intelligent document parsing',
+            'Firebase Auth, Firestore, and Storage fully integrated',
+            'Real-time verification status updates',
+            'Clean shadcn/ui interface optimized for operations teams',
         ],
-        liveUrl: 'https://example.com',
-        githubUrl: 'https://github.com/example/project',
+        liveUrl: 'https://scan-verify-swift.vercel.app',
+        githubUrl: 'https://github.com/michaeladitya78/scan-verify-swift',
     },
     {
         id: 2,
-        slug: 'portfolio-redesign',
-        title: 'Portfolio Redesign',
-        category: 'design',
-        description: 'Complete redesign of a creative professional\'s portfolio with focus on visual storytelling.',
-        excerpt: 'Modern portfolio with smooth animations and interactive elements.',
-        image: '/projects/portfolio-hero.jpg',
-        images: [
-            '/projects/portfolio-1.jpg',
-            '/projects/portfolio-2.jpg',
-        ],
-        tech: ['Figma', 'React', 'Framer Motion', 'Tailwind CSS'],
-        year: 2024,
+        slug: 'netmap-canvas-46',
+        title: 'NetHub MVP',
+        subtitle: 'Network Infrastructure Platform',
+        category: 'fullstack',
+        description: 'A professional network infrastructure discovery and management platform built as a client MVP for an IT operations team. Features real-time 3D network topology visualization using Three.js, automated device discovery, IP/VLAN management, and a full dashboard with live health metrics and REST API documentation.',
+        excerpt: 'Interactive 3D network topology management platform with Three.js visualization.',
+        accentColor: '#06b6d4',
+        initials: 'NH',
+        tech: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Vite', 'shadcn/ui', 'Tailwind CSS'],
+        year: 2025,
         featured: true,
-        timeline: '6 weeks',
-        role: 'UI/UX Designer & Developer',
-        challenge: 'Creating a unique visual identity that stands out while maintaining excellent usability.',
-        solution: 'Designed a custom component library with distinctive animations and implemented using modern web technologies.',
-        results: [
-            '300% increase in portfolio views',
-            'Featured on design showcase platforms',
-            '85% increase in client inquiries'
+        client: 'IT Operations Team',
+        timeline: '4 weeks (MVP)',
+        role: 'Full-Stack Developer',
+        challenge: 'Network operations teams lacked a visual, real-time tool to understand their infrastructure topology, making troubleshooting and capacity planning slow and manual.',
+        solution: 'Created an interactive 3D network graph with Three.js, backed by localStorage for zero-backend MVP speed. Includes automated device scanning simulation, CRUD inventory, subnet/VLAN tracking, and a live analytics dashboard.',
+        highlights: [
+            '3D interactive network topology built with Three.js + React Three Fiber',
+            'Automated device discovery engine with auto-detection',
+            'Full IP management with subnet and VLAN tracking',
+            'Real-time health metrics dashboard',
+            'REST API documentation with mock endpoints',
         ],
-        liveUrl: 'https://example-portfolio.com',
+        liveUrl: 'https://netmap-canvas-46.vercel.app',
+        githubUrl: 'https://github.com/michaeladitya78/netmap-canvas-46',
     },
     {
         id: 3,
-        slug: 'task-management-app',
-        title: 'Task Management App',
-        category: 'web',
-        description: 'Collaborative task management application with real-time updates and team features.',
-        excerpt: 'Real-time task management with team collaboration features.',
-        image: '/projects/taskapp-hero.jpg',
-        images: [
-            '/projects/taskapp-1.jpg',
-            '/projects/taskapp-2.jpg',
-            '/projects/taskapp-3.jpg',
+        slug: 'spares-copilot-ai',
+        title: 'Spares Copilot AI',
+        subtitle: 'AI-Powered Auto Parts Assistant',
+        category: 'ai',
+        description: 'An intelligent auto parts recommendation and lookup assistant built as an MVP for a client in the automotive aftermarket industry. Designed to help mechanics and service advisors quickly identify compatible spare parts, reducing downtime and lookup friction through an AI-driven conversational interface.',
+        excerpt: 'AI assistant for automotive spare parts lookup and compatibility recommendations.',
+        accentColor: '#f59e0b',
+        initials: 'SC',
+        tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'AI/ML Integration'],
+        year: 2025,
+        featured: false,
+        client: 'Automotive Aftermarket Client',
+        timeline: '3 weeks (MVP)',
+        role: 'Full-Stack Developer & AI Integrator',
+        challenge: 'Mechanics spent excessive time searching compatibility charts and supplier catalogs — a process ripe for AI-driven automation.',
+        solution: 'Built a copilot-style interface where users describe their vehicle and issue, and the AI suggests compatible parts with supplier context, cutting lookup time dramatically.',
+        highlights: [
+            'AI-driven parts recommendation engine',
+            'Conversational copilot interface',
+            'Fast Vite + TypeScript architecture for snappy UX',
+            'Designed for mechanics and service advisors',
         ],
-        tech: ['React', 'TypeScript', 'Firebase', 'Material-UI', 'Real-time DB'],
-        year: 2023,
-        featured: true,
-        timeline: '4 months',
-        role: 'Lead Frontend Developer',
-        challenge: 'Building real-time collaboration features that work seamlessly across devices.',
-        solution: 'Leveraged Firebase for real-time data synchronization and implemented optimistic UI updates.',
-        results: [
-            '5000+ active users',
-            'Average session time of 25 minutes',
-            '4.8/5 rating on app stores'
-        ],
-        liveUrl: 'https://taskapp.example.com',
-        githubUrl: 'https://github.com/example/taskapp',
+        liveUrl: 'https://spares-copilot-ai.vercel.app',
+        githubUrl: 'https://github.com/michaeladitya78/spares-copilot-ai',
     },
     {
         id: 4,
-        slug: 'mobile-banking-app',
-        title: 'Mobile Banking App',
-        category: 'mobile',
-        description: 'Secure mobile banking application with biometric authentication and modern UX.',
-        excerpt: 'Secure and intuitive mobile banking experience.',
-        image: '/projects/banking-hero.jpg',
-        images: [
-            '/projects/banking-1.jpg',
-            '/projects/banking-2.jpg',
-        ],
-        tech: ['React Native', 'TypeScript', 'Redux', 'Node.js', 'PostgreSQL'],
-        year: 2023,
+        slug: 'bihar-heirloom-elegance',
+        title: 'Bihar Heirloom Elegance',
+        subtitle: 'Heritage E-Commerce Platform',
+        category: 'web',
+        description: 'A heritage e-commerce platform built as a client MVP to showcase and sell traditional Bihar crafts and heirloom products to a global audience. Focused on cultural storytelling, premium UI, and a smooth shopping experience — designed to elevate the perceived value of artisan goods.',
+        excerpt: 'Premium heritage e-commerce platform celebrating traditional Bihar crafts.',
+        accentColor: '#ec4899',
+        initials: 'BH',
+        tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'shadcn/ui'],
+        year: 2025,
         featured: false,
-        client: 'FinTech Solutions',
-        timeline: '6 months',
-        role: 'Mobile Developer',
-        challenge: 'Ensuring bank-level security while maintaining smooth user experience.',
-        solution: 'Implemented biometric authentication, end-to-end encryption, and comprehensive testing.',
-        results: [
-            'Successfully passed security audit',
-            '20,000+ downloads in first month',
-            '4.7/5 user rating'
+        client: 'Bihar Artisan Brand',
+        timeline: '3 weeks (MVP)',
+        role: 'Full-Stack Developer & UI Designer',
+        challenge: 'Traditional artisan brands struggle to translate cultural richness into compelling digital storefronts that convert global buyers.',
+        solution: 'Designed a premium, storytelling-first shopping experience with elegant typography, rich product imagery sections, and a smooth purchasing flow — making every product feel like an heirloom.',
+        highlights: [
+            'Heritage-focused brand storytelling UI',
+            'Premium product showcase layouts',
+            'Smooth shopping and browsing experience',
+            'Optimized for global audience reach',
         ],
+        liveUrl: 'https://bihar-heirloom-elegance.vercel.app',
+        githubUrl: 'https://github.com/michaeladitya78/bihar-heirloom-elegance',
     },
     {
         id: 5,
-        slug: 'ai-content-generator',
-        title: 'AI Content Generator',
-        category: 'web',
-        description: 'AI-powered content generation tool with customizable templates and export features.',
-        excerpt: 'Smart content creation with AI assistance.',
-        image: '/projects/ai-tool-hero.jpg',
-        images: [
-            '/projects/ai-tool-1.jpg',
-            '/projects/ai-tool-2.jpg',
-        ],
-        tech: ['Next.js', 'OpenAI API', 'TypeScript', 'Tailwind CSS', 'Prisma'],
+        slug: 'verlet-integration-sdl',
+        title: 'Verlet Integration Visualizer',
+        subtitle: 'Physics Simulation Engine',
+        category: 'systems',
+        description: 'A real-time physics simulator built in C++ with SDL2, implementing Verlet integration algorithms for accurate simulation of physical principles. Features interactive controls that let users manipulate objects in the simulated environment in real time — a deep dive into low-level systems programming and computational physics.',
+        excerpt: 'Real-time physics simulator in C++ using Verlet integration and SDL2.',
+        accentColor: '#10b981',
+        initials: 'VI',
+        tech: ['C++', 'SDL2', 'Physics', 'Verlet Integration', 'Systems Programming'],
         year: 2024,
         featured: false,
-        timeline: '2 months',
-        role: 'Full-Stack Developer',
-        challenge: 'Creating an intuitive interface for complex AI interactions.',
-        solution: 'Built a template-based system with real-time preview and iterative refinement.',
-        results: [
-            '1000+ pieces of content generated daily',
-            '60% time savings for content creators',
-            'Featured in ProductHunt top 10'
+        client: 'Personal / Open Source',
+        timeline: '2 weeks',
+        role: 'Systems Developer',
+        challenge: 'Accurately simulating physical systems with stable numerical integration without instability or energy drift over time.',
+        solution: 'Implemented Verlet integration (known for its stability over Euler methods) in C++ with SDL2 for hardware-accelerated rendering and real-time user interaction.',
+        highlights: [
+            'Verlet integration for stable, accurate physics simulation',
+            'Real-time interactive controls via SDL2',
+            'C++ systems-level performance optimization',
+            'Educational tool for visualizing physical principles',
         ],
-        liveUrl: 'https://ai-content.example.com',
+        githubUrl: 'https://github.com/michaeladitya78/verlet-integration-sdl',
     },
     {
         id: 6,
-        slug: 'social-media-dashboard',
-        title: 'Social Media Dashboard',
-        category: 'web',
-        description: 'Analytics dashboard for managing multiple social media accounts with advanced insights.',
-        excerpt: 'Unified dashboard for social media analytics and management.',
-        image: '/projects/dashboard-hero.jpg',
-        images: [
-            '/projects/dashboard-1.jpg',
-            '/projects/dashboard-2.jpg',
-        ],
-        tech: ['React', 'TypeScript', 'Chart.js', 'Node.js', 'Express', 'MongoDB'],
-        year: 2023,
+        slug: 'reddit-discord-bot',
+        title: 'Reddit × Discord Bot',
+        subtitle: 'Social Media Automation',
+        category: 'fullstack',
+        description: 'A dynamic Discord bot built with Node.js and discord.js that fetches and displays top Reddit posts from any subreddit based on user commands. Integrates Reddit\'s public API for real-time content retrieval and delivers it directly into Discord servers with a clean command interface.',
+        excerpt: 'Discord bot that fetches top Reddit posts via commands using the Reddit API.',
+        accentColor: '#f97316',
+        initials: 'RD',
+        tech: ['Node.js', 'JavaScript', 'discord.js', 'Reddit API', 'REST APIs'],
+        year: 2024,
         featured: false,
-        timeline: '3 months',
-        role: 'Frontend Developer',
-        challenge: 'Visualizing complex data in an accessible and actionable way.',
-        solution: 'Created custom chart components and implemented smart data aggregation.',
-        results: [
-            '500+ business users',
-            '30% increase in social media engagement for clients',
-            'Positive feedback on UX design'
+        client: 'Personal / Open Source',
+        timeline: '1 week',
+        role: 'Backend Developer',
+        challenge: 'Discord communities wanted Reddit content surfaced in their servers without constant manual sharing.',
+        solution: 'Built an intuitive bot using discord.js with commands like `!top <subreddit>` that hit the Reddit API, format the top posts, and post them as rich Discord embeds.',
+        highlights: [
+            'Reddit API integration for real-time post retrieval',
+            'Custom command system for user interaction',
+            'Discord embed formatting for clean presentation',
+            'Open source and easily self-hostable',
         ],
+        githubUrl: 'https://github.com/michaeladitya78/reddit_discord',
     },
 ];
 
-export const categories = ['All', 'Web', 'Mobile', 'Design', 'Other'] as const;
+export const categories = ['All', 'Full-Stack', 'AI', 'Systems', 'Web'] as const;
 
-export const techStacks = [
-    'React',
-    'Next.js',
-    'TypeScript',
-    'Node.js',
-    'Tailwind CSS',
-    'Figma',
-    'React Native',
-    'Firebase',
-    'MongoDB',
-    'PostgreSQL',
-] as const;
+export type Category = typeof categories[number];
+
+export const categoryMap: Record<Category, string | null> = {
+    'All': null,
+    'Full-Stack': 'fullstack',
+    'AI': 'ai',
+    'Systems': 'systems',
+    'Web': 'web',
+};
+
+// Auto-derive unique tech stacks from projects
+export const techStacks = Array.from(new Set(projects.flatMap((p) => p.tech))).sort();
