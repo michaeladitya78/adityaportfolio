@@ -1,0 +1,35 @@
+# Aditya Raj - Product Manager & AI Engineer
+Portfolio and Resume of Aditya Raj, a full-stack engineer, AI/ML specialist, and Product Manager from NIT Patna (National Institute of Technology Patna).
+
+## Core Experience
+
+### Product Manager at Singh Movers and Packers
+Aug 2025 - Dec 2025.
+- Led end-to-end product strategy and operations for logistics technology platform serving the Australian market.
+- Managed cross-functional teams across sales, operations, and engineering to deliver product roadmap initiatives.
+
+### Product Manager at Mangiee
+April 2025 - Aug 2025.
+- Owned product operations and software product management for food-tech platform.
+- Created detailed wireframes and product specifications for mobile and web applications.
+
+### Product Manager at ZenDen
+Feb 2024 - Nov 2024.
+- Drove product vision and strategy for wellness/lifestyle technology platform.
+- Led full product lifecycle from ideation to launch, including requirements gathering and feature prioritization.
+
+### Content Creator at Kalvium
+May 2024 - Aug 2024.
+- Created SEO-optimized technical content and blog posts for ed-tech platform.
+
+## Education
+
+### National Institute of Technology (NIT) Patna
+Dual Degree Bachelor and Masters of Technology (B.Tech + M.Tech) in Mathematics and Computing Technology. Expected graduation 2027.
+- Coursework: Data Structures, Algorithms, OOP, DBMS, OS, AI, ML, Discrete Mathematics, Cryptography.
+
+## Top Skills & Technologies
+- Product Management, Strategy, Roadmapping, Agile Methodologies
+- Software Engineering, React, TypeScript, Next.js, Node.js
+- Artificial Intelligence, Machine Learning, Python, C++, CUDA
+- Data Analytics, SEO Content Strategy, Sales Operations
