@@ -1,3 +1,9 @@
+// hooks/use-toast.ts
+// Toast notification state management.
+// Implements a reducer-based global toast queue that components call via
+// the `toast()` function or the `useToast` hook. The Toaster UI component
+// in components/ui/toaster.tsx reads this state to display notifications.
+
 import * as React from "react"
 
 import type {

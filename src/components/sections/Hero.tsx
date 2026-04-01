@@ -1,3 +1,8 @@
+// components/sections/Hero.tsx
+// Full-screen hero section at the top of the home page.
+// Features a looping background video, animated role cycling, a shimmer-text
+// headline, magnetic CTA buttons, and a cursor-tracking glow orb.
+
 import { ArrowDownIcon, Github, Linkedin, Mail, MapPin, Briefcase, ArrowUpRight } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";

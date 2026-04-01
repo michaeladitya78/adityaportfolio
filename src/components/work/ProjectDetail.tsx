@@ -1,7 +1,21 @@
+// components/work/ProjectDetail.tsx
+// Full case-study page content for a single project.
+// Receives a typed Project object from ProjectDetailPage and renders the
+// hero, metadata grid, overview, challenge/solution, highlights, tech stack,
+// related projects, and a call-to-action.
+
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github, ChevronRight, Zap, Code2, Layers, Calendar } from 'lucide-react';
 import type { Project } from '@/data/projects';
 import { projects } from '@/data/projects';
+
+// Maps the project's category key to a human-readable display label.
+const CATEGORY_DISPLAY_LABELS: Record<string, string> = {
+  fullstack: 'Full-Stack',
+  ai: 'AI',
+  systems: 'Systems',
+  web: 'Web',
+};
 
 interface ProjectDetailProps {
   project: Project;
@@ -227,7 +241,8 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
         {relatedProjects.length > 0 && (
           <section className="border-t border-white/10 bg-[#0d0d13] py-24">
             <div className="max-w-5xl mx-auto px-6">
-              <h2 className="text-3xl font-display font-bold mb-12">More {categoryLabel[project.category] || project.category} Projects</h2>
+              <h2 className="text-3xl font-display font-bold mb-12">More {CATEGORY_DISPLAY_LABELS[project.category] || project.category} Projects</h2>
+
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedProjects.map((rp) => (
                   <Link
@@ -264,14 +279,6 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
       </div>
     </article>
   );
-};
-
-// Helper for category label mapping
-const categoryLabel: Record<string, string> = {
-  fullstack: "Full-Stack",
-  ai: "AI",
-  systems: "Systems",
-  web: "Web",
 };
 
 export default ProjectDetail;

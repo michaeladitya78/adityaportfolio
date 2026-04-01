@@ -1,8 +1,12 @@
+// components/sections/Contact.tsx
+// Contact section with an enquiry form (via formsubmit.co) and social links.
+// Themed with a dark HUD-inspired aesthetic and animated background overlays.
+
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Github, Linkedin, Send, Mail, MapPin, Twitter, Clock, Cpu, Radio, ShieldCheck } from "lucide-react";
+import { Send, Mail, MapPin, Clock, Cpu, Radio, ShieldCheck } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
@@ -77,20 +81,6 @@ export default function Contact() {
 
   return (
     <section id="contact" ref={ref} className="section-container relative overflow-hidden py-32 bg-[#0B1120]">
-      {/* ── Background Video & Blending ── */}
-      {/* NOTE: Please download the Pinterest video from https://pin.it/6cnCv4FBR and save it as "hud-bg.mp4" in your public folder */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline 
-        className="absolute inset-0 w-full h-full object-cover z-[0] mix-blend-color-dodge opacity-60 blur-[4px] scale-125 md:scale-150 translate-x-[20%] pointer-events-none"
-      >
-        <source src="/hud-bg.mp4" type="video/mp4" />
-      </video>
-      
-      {/* Heavy Dark Overlay to enforce text readability */}
-      <div className="absolute inset-0 bg-[#0B1120]/85 z-[1] pointer-events-none"></div>
 
       {/* Grid Pattern */}
       <div className="absolute inset-0 z-[2] opacity-10 pointer-events-none" style={{
@@ -113,8 +103,8 @@ export default function Contact() {
         </svg>
 
         {/* Particles */}
-        <div className="absolute top-1/4 right-1/4 w-1 h-1 bg-[#64CEFB] rounded-full opacity-30 animate-ping"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-orange-400 rounded-full opacity-40 animate-[ping_4s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+        <div className="absolute top-1/4 right-1/4 w-1 h-1 bg-[#64CEFB] rounded-full opacity-20"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-orange-400 rounded-full opacity-20 animate-pulse"></div>
       </div>
 
       <style>{`
@@ -135,8 +125,8 @@ export default function Contact() {
       {/* ── Main Content Container ── */}
       <div className="max-w-7xl mx-auto relative z-10 px-6">
         <div className={`transition-all duration-1000 flex flex-col items-center text-center mb-16 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold font-display text-white mb-4">Let's Connect</h2>
-          <p className="text-lg text-white/70 max-w-2xl font-body">
+          <h2 className="text-5xl md:text-6xl font-black font-display text-white mb-4 tracking-tight">Let's Connect</h2>
+          <p className="text-base text-white/60 max-w-xl font-body leading-relaxed">
             Have a project in mind or just want to chat? I'd love to hear from you. Fill out the form below or reach out directly.
           </p>
         </div>
@@ -146,15 +136,15 @@ export default function Contact() {
           {/* ── Left Column: Form ── */}
           <div className={`lg:col-span-7 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
             <div className="relative group">
-              {/* Pulsating Light Blue Halo */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#64CEFB] to-[#8B5CF6] rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-1000 animate-pulse"></div>
+              {/* Purple-Orange Halo Glow (Static layout, opacity increases on hover) */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-orange-500 rounded-3xl blur-xl opacity-10 group-hover:opacity-25 transition-opacity duration-1000"></div>
               
-              <div className="relative bg-[#0B1120]/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl">
+              <div className="relative bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl shadow-purple-900/20" style={{ borderTop: '1px solid rgba(168,85,247,0.25)' }}>
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Name Input */}
                     <div className="relative">
-                      <label htmlFor="name" className="block mb-2 text-sm text-white/70 font-body">Your Name</label>
+                      <label htmlFor="name" className="block mb-2 text-xs tracking-wider text-slate-400 uppercase font-body">Your Name</label>
                       <Input
                         id="name"
                         name="name"
@@ -163,15 +153,15 @@ export default function Contact() {
                         onFocus={() => setFocusedInput('name')}
                         onBlur={() => setFocusedInput(null)}
                         placeholder="John Doe"
-                        className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-14 rounded-xl focus:ring-0 focus:border-transparent transition-all"
+                        className="bg-black/40 border border-white/10 text-white placeholder:text-slate-500 h-14 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200 shadow-inner"
                         required
                       />
-                      <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[#64CEFB] to-transparent transition-all duration-300 pointer-events-none ${focusedInput === 'name' ? 'w-full' : 'w-0'}`}></div>
+                      <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-purple-500 to-orange-400 transition-all duration-300 pointer-events-none ${focusedInput === 'name' ? 'w-full' : 'w-0'}`}></div>
                     </div>
 
                     {/* Email Input */}
                     <div className="relative">
-                      <label htmlFor="email" className="block mb-2 text-sm text-white/70 font-body">Your Email</label>
+                      <label htmlFor="email" className="block mb-2 text-xs tracking-wider text-slate-400 uppercase font-body">Your Email</label>
                       <Input
                         id="email"
                         name="email"
@@ -181,16 +171,16 @@ export default function Contact() {
                         onBlur={() => setFocusedInput(null)}
                         type="email"
                         placeholder="john@example.com"
-                        className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-14 rounded-xl focus:ring-0 focus:border-transparent transition-all"
+                        className="bg-black/40 border border-white/10 text-white placeholder:text-slate-500 h-14 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200 shadow-inner"
                         required
                       />
-                      <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[#64CEFB] to-transparent transition-all duration-300 pointer-events-none ${focusedInput === 'email' ? 'w-full' : 'w-0'}`}></div>
+                      <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-purple-500 to-orange-400 transition-all duration-300 pointer-events-none ${focusedInput === 'email' ? 'w-full' : 'w-0'}`}></div>
                     </div>
                   </div>
 
                   {/* Subject Input */}
                   <div className="relative">
-                    <label htmlFor="subject" className="block mb-2 text-sm text-white/70 font-body">Subject</label>
+                    <label htmlFor="subject" className="block mb-2 text-xs tracking-wider text-slate-400 uppercase font-body">Subject</label>
                     <Input
                       id="subject"
                       name="subject"
@@ -199,15 +189,15 @@ export default function Contact() {
                       onFocus={() => setFocusedInput('subject')}
                       onBlur={() => setFocusedInput(null)}
                       placeholder="Project Inquiry"
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-14 rounded-xl focus:ring-0 focus:border-transparent transition-all"
+                      className="bg-black/40 border border-white/10 text-white placeholder:text-slate-500 h-14 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200 shadow-inner"
                       required
                     />
-                    <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[#64CEFB] to-transparent transition-all duration-300 pointer-events-none ${focusedInput === 'subject' ? 'w-full' : 'w-0'}`}></div>
+                    <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-purple-500 to-orange-400 transition-all duration-300 pointer-events-none ${focusedInput === 'subject' ? 'w-full' : 'w-0'}`}></div>
                   </div>
 
                   {/* Message Input */}
                   <div className="relative">
-                    <label htmlFor="message" className="block mb-2 text-sm text-white/70 font-body">Message</label>
+                    <label htmlFor="message" className="block mb-2 text-xs tracking-wider text-slate-400 uppercase font-body">Message</label>
                     <Textarea
                       id="message"
                       name="message"
@@ -216,10 +206,10 @@ export default function Contact() {
                       onFocus={() => setFocusedInput('message')}
                       onBlur={() => setFocusedInput(null)}
                       placeholder="I'd like to discuss a potential project..."
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 p-4 rounded-xl min-h-[160px] focus:ring-0 focus:border-transparent transition-all"
+                      className="bg-black/40 border border-white/10 text-white placeholder:text-slate-500 p-4 rounded-xl min-h-[160px] focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200 shadow-inner"
                       required
                     />
-                    <div className={`absolute bottom-[6px] left-0 h-[2px] rounded-xl bg-gradient-to-r from-[#64CEFB] to-transparent transition-all duration-300 pointer-events-none ${focusedInput === 'message' ? 'w-[99%]' : 'w-0'}`}></div>
+                    <div className={`absolute bottom-[6px] left-0 h-[2px] rounded-xl bg-gradient-to-r from-purple-500 to-orange-400 transition-all duration-300 pointer-events-none ${focusedInput === 'message' ? 'w-[99%]' : 'w-0'}`}></div>
                   </div>
 
                   {/* Submit Button */}
@@ -227,7 +217,7 @@ export default function Contact() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="group group-hover:animate-wiggle relative overflow-hidden bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold h-14 px-8 rounded-xl w-full sm:w-auto shadow-[0_0_15px_rgba(79,70,229,0.4)] hover:shadow-[0_0_25px_rgba(79,70,229,0.6)] transition-all duration-300 ease-in-out"
+                      className="group group-hover:animate-wiggle relative overflow-hidden bg-gradient-to-r from-purple-600 to-orange-500 hover:opacity-90 text-white font-bold h-14 px-8 rounded-xl w-full sm:w-auto shadow-[0_0_20px_rgba(147,51,234,0.5)] hover:shadow-[0_0_32px_rgba(234,88,12,0.4)] transition-all duration-300 ease-in-out"
                     >
                       <div className="flex items-center justify-center gap-3 relative z-10">
                         {isSubmitting ? (
@@ -257,37 +247,37 @@ export default function Contact() {
             
             {/* Card 1: Contact Info */}
             <div 
-              className={`relative bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-3xl transition-all duration-700 hover:-translate-y-2 hover:bg-white/10 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
-              style={{ transitionDelay: '500ms' }}
+              className={`relative bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl transition-all duration-700 shadow-2xl shadow-purple-900/20 hover:-translate-y-2 hover:bg-white/[0.08] hover:shadow-purple-900/30 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+              style={{ transitionDelay: '500ms', borderTop: '1px solid rgba(168,85,247,0.2)' }}
             >
               <Radio className="absolute top-6 right-6 h-12 w-12 text-white/5 stroke-1" />
-              <h3 className="text-xl font-display font-semibold text-white mb-6">Contact Info</h3>
+              <h3 className="text-xl font-display font-bold text-white mb-6 tracking-tight">Contact Info</h3>
               <div className="space-y-5">
                 <div className="flex items-center gap-4">
                   <div className="h-10 w-10 rounded-full bg-[#64CEFB]/10 flex items-center justify-center border border-[#64CEFB]/20">
                     <Mail className="h-4 w-4 text-[#64CEFB]" />
                   </div>
                   <div>
-                    <p className="text-xs text-white/50 uppercase tracking-widest mb-1">Email</p>
-                    <p className="text-white font-medium">michaeladitya150@gmail.com</p>
+                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-1 font-medium">Email</p>
+                    <p className="text-lg font-medium text-white">michaeladitya150@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-full bg-[#64CEFB]/10 flex items-center justify-center border border-[#64CEFB]/20">
-                    <MapPin className="h-4 w-4 text-[#64CEFB]" />
+                  <div className="h-10 w-10 rounded-full bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
+                    <MapPin className="h-4 w-4 text-purple-400" />
                   </div>
                   <div>
-                    <p className="text-xs text-white/50 uppercase tracking-widest mb-1">Location</p>
-                    <p className="text-white font-medium">Available for remote work</p>
+                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-1 font-medium">Location</p>
+                    <p className="text-lg font-medium text-white">Available for remote & hybrid work</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-full bg-[#64CEFB]/10 flex items-center justify-center border border-[#64CEFB]/20">
-                    <Clock className="h-4 w-4 text-[#64CEFB]" />
+                  <div className="h-10 w-10 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/20">
+                    <Clock className="h-4 w-4 text-orange-400" />
                   </div>
                   <div>
-                    <p className="text-xs text-white/50 uppercase tracking-widest mb-1">Response Time</p>
-                    <p className="text-white font-medium">Usually within 24 hours</p>
+                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-1 font-medium">Response Time</p>
+                    <p className="text-lg font-medium text-white">Usually within 24 hours</p>
                   </div>
                 </div>
               </div>
@@ -295,29 +285,35 @@ export default function Contact() {
 
             {/* Card 2: Social Media */}
             <div 
-              className={`relative bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-3xl transition-all duration-700 hover:-translate-y-2 hover:bg-white/10 group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
-              style={{ transitionDelay: '650ms' }}
+              className={`relative bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl transition-all duration-700 shadow-2xl shadow-purple-900/20 hover:-translate-y-2 hover:bg-white/[0.08] hover:shadow-purple-900/30 group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+              style={{ transitionDelay: '650ms', borderTop: '1px solid rgba(251,146,60,0.2)' }}
             >
               <Cpu className="absolute top-6 right-6 h-12 w-12 text-white/5 stroke-1" />
-              <h3 className="text-xl font-display font-semibold text-white mb-6">Social Media</h3>
+              <h3 className="text-xl font-display font-bold text-white mb-6 tracking-tight">Social Media</h3>
               <div className="flex flex-col gap-3">
-                <a href="https://github.com/michaeladitya78" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-[#64CEFB]/40 transition-all group/social">
-                  <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center group-hover/social:bg-[#64CEFB]/20 transition-all group-hover/social:shadow-[0_0_15px_rgba(100,206,251,0.5)]">
-                    <Github className="h-4 w-4 text-white/70 group-hover/social:text-[#64CEFB]" />
+                <a href="https://github.com/michaeladitya78" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-white/40 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 group/social">
+                  <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center group-hover/social:bg-white/20 transition-all duration-300 group-hover/social:shadow-[0_0_18px_rgba(255,255,255,0.6)]">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/60 group-hover/social:text-white transition-colors duration-300" fill="currentColor">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
                   </div>
-                  <span className="text-white/80 group-hover/social:text-white font-medium">@michaeladitya78</span>
+                  <span className="text-white/70 group-hover/social:text-white font-medium transition-colors duration-300">@michaeladitya78</span>
                 </a>
-                <a href="https://www.linkedin.com/in/aditya-raj-8764a3205/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-[#64CEFB]/40 transition-all group/social">
-                  <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center group-hover/social:bg-[#64CEFB]/20 transition-all group-hover/social:shadow-[0_0_15px_rgba(100,206,251,0.5)]">
-                    <Linkedin className="h-4 w-4 text-white/70 group-hover/social:text-[#64CEFB]" />
+                <a href="https://www.linkedin.com/in/aditya-raj-8764a3205/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-[#0077b5]/40 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 group/social">
+                  <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center group-hover/social:bg-[#0077b5]/20 transition-all duration-300 group-hover/social:shadow-[0_0_18px_rgba(0,119,181,0.6)]">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/60 group-hover/social:text-[#0077b5] transition-colors duration-300" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
                   </div>
-                  <span className="text-white/80 group-hover/social:text-white font-medium">Aditya Raj</span>
+                  <span className="text-white/70 group-hover/social:text-white font-medium transition-colors duration-300">Aditya Raj</span>
                 </a>
-                <a href="https://x.com/aadi_8888" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-[#64CEFB]/40 transition-all group/social">
-                  <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center group-hover/social:bg-[#64CEFB]/20 transition-all group-hover/social:shadow-[0_0_15px_rgba(100,206,251,0.5)]">
-                    <Twitter className="h-4 w-4 text-white/70 group-hover/social:text-[#64CEFB]" />
+                <a href="https://x.com/aadi_8888" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-white/40 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 group/social">
+                  <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center group-hover/social:bg-white/20 transition-all duration-300 group-hover/social:shadow-[0_0_18px_rgba(255,255,255,0.6)]">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/60 group-hover/social:text-white transition-colors duration-300" fill="currentColor">
+                      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                    </svg>
                   </div>
-                  <span className="text-white/80 group-hover/social:text-white font-medium">@aadi_8888</span>
+                  <span className="text-white/70 group-hover/social:text-white font-medium transition-colors duration-300">@aadi_8888</span>
                 </a>
               </div>
             </div>
@@ -327,12 +323,12 @@ export default function Contact() {
               className={`relative bg-white/[0.03] backdrop-blur-md border border-white/10 border-t-2 border-t-emerald-500 p-6 rounded-3xl transition-all duration-700 hover:-translate-y-2 hover:bg-white/5 overflow-hidden ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
               style={{ transitionDelay: '800ms' }}
             >
-              <div className="absolute right-0 top-0 h-32 w-32 bg-emerald-500/10 rounded-full blur-2xl animate-pulse"></div>
+              <div className="absolute right-0 top-0 h-32 w-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
               
               <div className="flex items-start gap-4 mb-3 relative z-10">
-                <div className="relative flex h-4 w-4 mt-1">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
+                <div className="relative flex h-3 w-3 mt-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-40"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
                 </div>
                 <h3 className="text-xl font-display font-semibold text-white tracking-wide">Currently Available</h3>
               </div>

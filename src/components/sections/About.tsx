@@ -1,5 +1,8 @@
+// components/sections/About.tsx
+// About section — introduces Aditya's background, roles, and four skill areas
+// via a split layout: biography text on the left, feature cards on the right.
 
-import { Code, FileText, User, Lightbulb, BadgeCheck, Bot, Database, Shield, Brain, PieChart } from "lucide-react";
+import { Code, Bot, BadgeCheck, Brain } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Card, CardContent } from "@/components/ui/card";
 import { useInView } from "react-intersection-observer";

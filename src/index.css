@@ -1,4 +1,10 @@
-/* === CSS imports must come before @tailwind directives === */
+/* index.css
+ * Global CSS entry point.
+ * Imports the three CSS layers (base tokens, component classes, animations)
+ * then injects Tailwind's base, component, and utility layers.
+ * Order matters: custom imports must come before @tailwind directives.
+ */
+
 @import "./styles/base.css";
 @import "./styles/components.css";
 @import "./styles/animations.css";

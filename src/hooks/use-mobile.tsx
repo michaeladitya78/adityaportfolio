@@ -1,54 +1,39 @@
+// hooks/use-mobile.tsx
+// Responsive breakpoint detection hooks.
+// Provides useIsMobile and useDeviceType for components that need to
+// conditionally render or behave differently based on screen width.
 
-import * as React from "react";
+import * as React from 'react';
 
-const MOBILE_BREAKPOINT = 768; // Default mobile breakpoint
-const TABLET_BREAKPOINT = 1024; // Tablet breakpoint
+// Breakpoint values match Tailwind's default md and lg breakpoints.
+const MOBILE_BREAKPOINT = 768;
+const TABLET_BREAKPOINT = 1024;
 
+/**
+ * Returns true when the viewport is narrower than 768px (mobile).
+ * Re-evaluates on every window resize.
+ */
 export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
+    const checkIfMobile = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
 
-    // Check on initial render
     checkIfMobile();
-    
-    // Add event listener to check when window resizes
-    window.addEventListener("resize", checkIfMobile);
-    
-    // Clean up
-    return () => window.removeEventListener("resize", checkIfMobile);
+    window.addEventListener('resize', checkIfMobile);
+    return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
   return isMobile;
 }
 
-export function useIsTablet() {
-  const [isTablet, setIsTablet] = React.useState(false);
-
-  React.useEffect(() => {
-    const checkIfTablet = () => {
-      const width = window.innerWidth;
-      setIsTablet(width >= MOBILE_BREAKPOINT && width < TABLET_BREAKPOINT);
-    };
-
-    // Check on initial render
-    checkIfTablet();
-    
-    // Add event listener to check when window resizes
-    window.addEventListener("resize", checkIfTablet);
-    
-    // Clean up
-    return () => window.removeEventListener("resize", checkIfTablet);
-  }, []);
-
-  return isTablet;
-}
-
+/**
+ * Returns the current device category: 'mobile', 'tablet', or 'desktop'.
+ * Used by sections that render different layouts per device type.
+ * Re-evaluates on every window resize.
+ */
 export function useDeviceType() {
-  const [deviceType, setDeviceType] = React.useState<'mobile'|'tablet'|'desktop'>('desktop');
+  const [deviceType, setDeviceType] = React.useState<'mobile' | 'tablet' | 'desktop'>('desktop');
 
   React.useEffect(() => {
     const checkDeviceType = () => {
@@ -62,14 +47,9 @@ export function useDeviceType() {
       }
     };
 
-    // Check on initial render
     checkDeviceType();
-    
-    // Add event listener to check when window resizes
-    window.addEventListener("resize", checkDeviceType);
-    
-    // Clean up
-    return () => window.removeEventListener("resize", checkDeviceType);
+    window.addEventListener('resize', checkDeviceType);
+    return () => window.removeEventListener('resize', checkDeviceType);
   }, []);
 
   return deviceType;

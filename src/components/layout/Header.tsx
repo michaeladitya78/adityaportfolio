@@ -1,9 +1,12 @@
+// components/layout/Header.tsx
+// Sticky navigation bar rendered on every page.
+// Transitions from transparent to frosted glass (glassmorphism) after the
+// user scrolls 20px. Includes a mobile full-screen drawer at <768px.
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
-
-/* ── Apple-style nav: transparent → frosted glass on scroll ── */
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

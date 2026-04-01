@@ -1,14 +1,17 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+// pages/NotFound.tsx
+// The catch-all "*" route — shown when a user navigates to any unknown URL.
+// Logs the attempted path to the console for debugging, then renders a
+// simple 404 message with a link back to the home page.
+
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const NotFound = () => {
   const location = useLocation();
 
+  // Log 404 errors so they appear in production error monitoring if connected.
   useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
+    console.error('404 — User attempted to access non-existent route:', location.pathname);
   }, [location.pathname]);
 
   return (

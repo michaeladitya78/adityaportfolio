@@ -1,3 +1,8 @@
+// components/Projects.tsx
+// Projects section — a filterable grid of project cards with live iframe previews.
+// Used by the home page ("/") to display featured work and by WorkPage ("/work")
+// for the full portfolio grid.
+
 import { Badge } from "@/components/ui/badge";
 import {
   ExternalLink, Github, ChevronRight, ArrowUpRight,

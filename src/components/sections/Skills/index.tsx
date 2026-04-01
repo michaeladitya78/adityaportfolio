@@ -1,3 +1,8 @@
+// components/sections/Skills/index.tsx
+// Skills section — an infinite horizontal marquee of technology icons.
+// Partitions ALL_SKILLS into 5 rows, each scrolling at a different speed
+// to create a layered, dynamic visual effect.
+
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { SectionHeading } from "@/components/ui/section-heading";

@@ -1,3 +1,8 @@
+// components/layout/Footer.tsx
+// Site-wide footer rendered on every page.
+// Displays brand identity, navigation links, social icons, current availability
+// status, and a scroll-to-top button that appears after scrolling 300px.
+
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, Twitter, ArrowUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -123,6 +128,7 @@ const Footer = () => {
       )}
     </>
   );
-};;
+};
+
 
 export default Footer;
