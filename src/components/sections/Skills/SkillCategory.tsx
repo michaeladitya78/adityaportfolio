@@ -1,5 +1,5 @@
-
 import { useState } from "react";
+import DOMPurify from "dompurify";
 import { Skill } from "./skillData";
 
 interface SkillCategoryProps {
@@ -46,7 +46,7 @@ export const SkillCategory = ({
                     <div
                       className={`w-14 h-14 p-2.5 flex items-center justify-center rounded-2xl mb-2 transition-all duration-500 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 group-hover:scale-110 group-hover:rotate-3 group-hover:border-indigo-500/30 group-hover:bg-indigo-500/5 animate-float-slow`}
                       style={{ animationDelay: `${idx * 0.2}s` }}
-                      dangerouslySetInnerHTML={{ __html: skill.icon }}
+                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(skill.icon) }}
                     />
                   ) : (
                     <img
