@@ -35,17 +35,11 @@ const socials = [
 export default function Hero() {
   const [currentRole, setCurrentRole] = useState(0);
   const [roleFade, setRoleFade]       = useState(true);
-  const [mounted, setMounted]         = useState(false);
+  const [mounted, setMounted]         = useState(true);
   const [mousePos, setMousePos]       = useState({ x: 0, y: 0 });
   const [hoveredBtn, setHoveredBtn]   = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const glowRef    = useRef<HTMLDivElement>(null);
-
-  /* Mount stagger entrance */
-  useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 80);
-    return () => clearTimeout(t);
-  }, []);
 
   /* Role cycling — 3.6 s crossfade */
   useEffect(() => {
@@ -248,7 +242,7 @@ export default function Hero() {
             fontFamily: "var(--font-body)",
             fontSize: "var(--type-subhead)",
             opacity: mounted ? 1 : 0,
-            transition: "opacity 700ms 650ms eaee-out",
+            transition: "opacity 700ms 650ms ease-out",
           }}
         >
           <span className="flex items-center gap-1.5 font-medium">

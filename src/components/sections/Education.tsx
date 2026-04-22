@@ -104,7 +104,7 @@ const learningTopics = [
 
 export default function Education() {
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     if (inView) setIsVisible(true);

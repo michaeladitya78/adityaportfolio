@@ -11,11 +11,12 @@ import { useDeviceType } from "@/hooks/use-mobile";
 
 export default function About() {
   const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
+    triggerOnce: true,
+    threshold: 0.05,
+    rootMargin: '100px 0px',
   });
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const deviceType = useDeviceType();
 
   useEffect(() => {

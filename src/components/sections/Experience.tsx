@@ -319,7 +319,7 @@ export default function Experience() {
   const [activeClubIndex, setActiveClubIndex] = useState(-1);
 
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     if (inView) setIsVisible(true);

@@ -27,7 +27,7 @@ export default function Contact() {
     threshold: 0.1,
   });
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     if (inView) {

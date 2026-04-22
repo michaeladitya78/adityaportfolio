@@ -12,7 +12,7 @@ export default function CoreCompetencies() {
         threshold: 0.1,
     });
 
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const deviceType = useDeviceType();
 
     useEffect(() => {

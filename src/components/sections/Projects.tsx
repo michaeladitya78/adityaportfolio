@@ -13,7 +13,7 @@ export default function Projects() {
     threshold: 0.1,
   });
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
