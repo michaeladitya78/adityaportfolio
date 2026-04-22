@@ -30,13 +30,5 @@ export default defineConfig(({ mode }) => ({
         comments: false,
       },
     },
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-popover', 'lucide-react']
-        }
-      }
-    }
   }
 }));
