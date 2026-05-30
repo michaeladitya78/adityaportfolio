@@ -25,26 +25,26 @@ interface ExperienceEntry {
 const experiences: ExperienceEntry[] = [
   {
     id: 1,
-    role: "Product Manager",
+    role: "Product Operations Lead",
     company: "Singh Movers and Packers",
-    period: "Aug 2025 - Dec 2025",
-    type: "Remote",
-    description: "Successfully launched product features supporting logistics operations, coordinating across multiple time zones and stakeholder groups",
+    period: "Sep 2025 - Apr 2026 · 8 mos",
+    type: "Remote · Blacktown, NSW, Australia",
+    description: "Led product operations for a logistics technology platform serving the Australian market, coordinating across multiple time zones and distributed stakeholder groups",
     highlights: [
-      "Led end-to-end product strategy and operations for logistics technology platform serving Australian market",
+      "Led end-to-end product strategy and operations for logistics technology platform serving the Australian market",
       "Managed cross-functional teams across sales, operations, and engineering to deliver product roadmap initiatives",
       "Implemented data-driven decision making processes, improving operational efficiency and customer satisfaction",
-      "Spearheaded international sales operations and team management across remote distributed teams"
+      "Spearheaded international sales operations and public relations across remote distributed teams"
     ],
-    tech: ["Product Management", "Sales Operations", "International Sales", "Team Leadership", "Public Relations"],
+    tech: ["Product Operations", "Public Relations", "International Sales", "Team Leadership", "Sales Operations", "Stakeholder Management", "Remote Team Management"],
   },
   {
     id: 2,
     role: "Product Manager",
     company: "Mangiee",
-    period: "April 2025 - Aug 2025",
-    type: "Hybrid",
-    description: "Delivered user-centric product features that enhanced platform usability and user engagement",
+    period: "Sep 2024 - Aug 2025 · 1 yr",
+    type: "Hybrid · Patna, Bihar, India",
+    description: "Delivered user-centric product features that enhanced platform usability and user engagement for a growing food-tech platform",
     highlights: [
       "Owned product operations and software product management for food-tech platform",
       "Created detailed wireframes and product specifications for mobile and web applications",
