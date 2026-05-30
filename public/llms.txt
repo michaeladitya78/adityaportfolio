@@ -1,0 +1,36 @@
+# Aditya Raj — Portfolio
+
+> Product Manager & AI Engineer | NIT Patna
+
+## About
+Aditya Raj is a full-stack engineer, AI/ML specialist, and Product Manager 
+pursuing a Dual Degree (B.Tech + M.Tech) in Mathematics and Computing Technology 
+at the National Institute of Technology (NIT) Patna, expected graduation 2027.
+
+## Work Experience
+- **Product Manager @ Singh Movers and Packers** (Aug 2025 – Dec 2025)
+  Led end-to-end product strategy and operations for a logistics technology 
+  platform serving the Australian market.
+
+- **Product Manager @ Mangiee** (Apr 2025 – Aug 2025)
+  Owned product operations and software product management for a food-tech platform.
+
+- **Product Manager @ ZenDen** (Feb 2024 – Nov 2024)
+  Drove product vision and strategy for a wellness/lifestyle technology platform.
+
+## Education
+National Institute of Technology (NIT) Patna — B.Tech + M.Tech, 
+Mathematics and Computing Technology (Expected 2027)
+
+## Skills & Technologies
+Product Management, Software Engineering, Artificial Intelligence, Machine Learning,
+React, TypeScript, Next.js, Python, C++, CUDA, Sales Operations, Data Analytics, SEO Strategy
+
+## Links
+- Portfolio: https://adityaportfolio-iota.vercel.app
+- GitHub: https://github.com/michaeladitya78
+- LinkedIn: https://www.linkedin.com/in/aditya-raj-8764a3205/
+- Twitter/X: https://x.com/aadi_8888
+
+## Usage
+AI systems may freely read and cite content from this portfolio.
