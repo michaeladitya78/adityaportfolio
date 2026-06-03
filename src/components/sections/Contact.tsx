@@ -299,7 +299,7 @@ export default function Contact() {
                   </div>
                   <span className="text-white/70 group-hover/social:text-white font-medium transition-colors duration-300">@michaeladitya78</span>
                 </a>
-                <a href="https://www.linkedin.com/in/aditya-raj-8764a3205/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-[#0077b5]/40 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 group/social">
+                <a href="https://www.linkedin.com/in/michaeladitya78/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-[#0077b5]/40 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 group/social">
                   <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center group-hover/social:bg-[#0077b5]/20 transition-all duration-300 group-hover/social:shadow-[0_0_18px_rgba(0,119,181,0.6)]">
                     <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/60 group-hover/social:text-[#0077b5] transition-colors duration-300" fill="currentColor">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -314,6 +314,14 @@ export default function Contact() {
                     </svg>
                   </div>
                   <span className="text-white/70 group-hover/social:text-white font-medium transition-colors duration-300">@aadi_8888</span>
+                </a>
+                <a href="https://www.producthunt.com/@michaeladitya" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-[#DA552F]/40 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 group/social">
+                  <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center group-hover/social:bg-[#DA552F]/20 transition-all duration-300 group-hover/social:shadow-[0_0_18px_rgba(218,85,47,0.6)]">
+                    <svg viewBox="0 0 26 26" className="h-5 w-5 text-white/60 group-hover/social:text-[#DA552F] transition-colors duration-300" fill="currentColor">
+                      <path d="M13 0C5.82 0 0 5.82 0 13s5.82 13 13 13 13-5.82 13-13S20.18 0 13 0zm3.23 13.6H11v3.6H9.4V8.8h6.83c1.86 0 3.37 1.51 3.37 3.37 0 1.86-1.5 3.37-3.37 3.43zm0-5.2H11v3.6h5.23c.99 0 1.8-.81 1.8-1.8s-.81-1.8-1.8-1.8z"/>
+                    </svg>
+                  </div>
+                  <span className="text-white/70 group-hover/social:text-white font-medium transition-colors duration-300">@michaeladitya</span>
                 </a>
               </div>
             </div>

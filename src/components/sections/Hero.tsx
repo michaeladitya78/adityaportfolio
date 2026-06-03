@@ -4,6 +4,13 @@
 // headline, magnetic CTA buttons, and a cursor-tracking glow orb.
 
 import { ArrowDownIcon, Github, Linkedin, Mail, MapPin, Briefcase, ArrowUpRight } from "lucide-react";
+
+/* ── Product Hunt icon (no lucide equivalent) ─────────────────────────── */
+const ProductHuntIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 26 26" fill="currentColor" aria-hidden="true">
+    <path d="M13 0C5.82 0 0 5.82 0 13s5.82 13 13 13 13-5.82 13-13S20.18 0 13 0zm3.23 13.6H11v3.6H9.4V8.8h6.83c1.86 0 3.37 1.51 3.37 3.37 0 1.86-1.5 3.37-3.37 3.43zm0-5.2H11v3.6h5.23c.99 0 1.8-.81 1.8-1.8s-.81-1.8-1.8-1.8z"/>
+  </svg>
+);
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 
@@ -24,9 +31,10 @@ const stats = [
 
 /* ── Social links ────────────────────────────────────────────────────────── */
 const socials = [
-  { href: "https://github.com/michaeladitya78",              icon: Github,   label: "GitHub"   },
-  { href: "https://www.linkedin.com/in/aditya-raj-8764a3205/", icon: Linkedin, label: "LinkedIn" },
-  { href: "mailto:michaeladitya150@gmail.com",               icon: Mail,     label: "Email"    },
+  { href: "https://github.com/michaeladitya78",                   icon: Github,          label: "GitHub"        },
+  { href: "https://www.linkedin.com/in/michaeladitya78/",         icon: Linkedin,        label: "LinkedIn"      },
+  { href: "mailto:michaeladitya150@gmail.com",                    icon: Mail,            label: "Email"         },
+  { href: "https://www.producthunt.com/@michaeladitya",           icon: ProductHuntIcon, label: "Product Hunt"  },
 ];
 
 /* ══════════════════════════════════════════════
